@@ -85,16 +85,26 @@
 
   /* download */
   .download { background: var(--sky) url(img/2020/newsletter-bg.webp) center/cover; }
-  .versions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-  .ver { position: relative; background: #fff; color: var(--ink); border-radius: 26px; padding: 28px 24px 26px; box-shadow: 0 8px 0 #0b56a8, 0 24px 40px rgba(0, 40, 100, .25); display: flex; flex-direction: column; }
-  .ver.latest { background: linear-gradient(#fff, #fff8e1); box-shadow: 0 8px 0 #d68a00, 0 24px 40px rgba(0, 40, 100, .25); }
-  .ver .tag { position: absolute; top: -14px; left: 24px; background: var(--orange); color: #fff; font-weight: 900; font-size: .72rem; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
-  .ver h3 { margin: 0; font-size: 2.4rem; font-weight: 900; color: var(--blue); line-height: 1; }
-  .ver .era { margin: 6px 0 14px; font-weight: 700; color: var(--orange-2); text-transform: uppercase; font-size: .78rem; letter-spacing: .03em; }
-  .ver p { margin: 0 0 22px; font-size: .95rem; flex: 1; }
-  .ver .dl { display: flex; flex-wrap: wrap; gap: 12px; }
-  .get em { font-style: normal; font-weight: 700; opacity: .75; margin-left: 2px; }
-  .get em:not(:empty)::before { content: "· "; }
+  .installer { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); background: #fff; color: var(--ink); border-radius: 30px; overflow: hidden; box-shadow: 0 10px 0 #0b56a8, 0 30px 50px rgba(0, 40, 100, .28); max-width: 980px; margin: 0 auto; }
+  .pick { background: linear-gradient(160deg, #eaf3ff, #d6e7ff); padding: 34px 30px; display: flex; flex-direction: column; gap: 20px; }
+  .field span { display: block; font-weight: 900; text-transform: uppercase; font-size: .78rem; letter-spacing: .04em; color: var(--blue); margin: 0 0 8px 4px; }
+  .field select { width: 100%; appearance: none; -webkit-appearance: none; border: 3px solid var(--blue); border-radius: 18px; padding: 14px 48px 14px 18px; font: 900 1.15rem Montserrat, sans-serif; color: var(--blue); cursor: pointer; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230658b5' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center / 20px; box-shadow: 0 4px 0 #b9cde8; }
+  .field select:disabled { opacity: .6; cursor: default; }
+  .blurb { margin: 4px 4px 0; font-size: .95rem; }
+  .sheet { padding: 34px 32px 30px; display: flex; flex-direction: column; }
+  .sheet-head { display: flex; align-items: center; gap: 14px; }
+  .sheet h3 { margin: 0; font-size: 2.6rem; font-weight: 900; color: var(--blue); line-height: 1; }
+  .sheet .tag { background: var(--orange); color: #fff; font-weight: 900; font-size: .72rem; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+  .sheet .era { margin: 8px 0 18px; font-weight: 700; color: var(--orange-2); text-transform: uppercase; font-size: .8rem; letter-spacing: .03em; }
+  .specs { margin: 0 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #dbe7f7; border: 1px solid #dbe7f7; border-radius: 16px; overflow: hidden; }
+  .specs div { background: #fff; padding: 11px 14px; min-width: 0; }
+  .specs .wide { grid-column: 1 / -1; }
+  .specs dt { font-size: .7rem; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: #6b86ad; }
+  .specs dd { margin: 2px 0 0; font-weight: 700; font-size: .92rem; overflow-wrap: anywhere; }
+  .specs code { font: 600 .82rem ui-monospace, Menlo, monospace; color: var(--ink); }
+  .specs button { border: 0; background: none; padding: 0 0 0 6px; font: 900 .72rem Montserrat, sans-serif; color: var(--orange-2); text-transform: uppercase; cursor: pointer; }
+  .heads { margin: 0 0 18px; padding: 12px 16px; border-radius: 14px; background: #fff4df; color: #8a4b00; font-size: .88rem; font-weight: 600; }
+  .sheet .get { align-self: flex-start; font-size: 1rem; padding: 16px 30px; }
   .get:disabled { opacity: .45; cursor: default; transform: none; }
   .prog { margin-top: 18px; }
   .bar { height: 14px; border-radius: 999px; background: #e3edfa; overflow: hidden; box-shadow: inset 0 2px 0 rgba(0, 40, 100, .12); }
@@ -193,7 +203,8 @@
     .menu-btn { display: block; }
     header .pill { display: none; }
     header:has(nav.open) { background: var(--blue); }
-    .versions { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; gap: 30px; }
+    .installer { grid-template-columns: 1fr; }
+    .pick, .sheet { padding: 26px 20px; }
     .run .wrap, .install .wrap, .community .wrap { grid-template-columns: 1fr; }
     .run .phone { width: min(240px, 60vw); order: 2; }
     .install .faq-minion, .community .mascot { width: 200px; order: -1; }
@@ -271,37 +282,20 @@
         <h2><small>Pick your</small><span>version</span></h2>
         <p>Every download already points at our server. Install it and play.</p>
       </div>
-      <div class="versions">
-        <article class="ver latest">
-          <span class="tag">Latest</span>
-          <h3>13.3.0</h3>
-          <div class="era">July 2026 · Unity</div>
-          <p>The final version of Minion Rush, with the Season Pass, events, collections and the full costume lineup.</p>
-          <div class="dl">
-            <button class="pill blue small get" data-build="13.3.0-android">Android APK<em></em></button>
-            <button class="pill orange small get" data-build="13.3.0-ios">iOS IPA<em></em></button>
-          </div>
+      <div class="installer">
+        <div class="pick">
+          <label class="field"><span>Version</span><select id="i-ver"></select></label>
+          <label class="field"><span>Device</span><select id="i-plat"></select></label>
+          <p class="blurb" id="i-blurb"></p>
+        </div>
+        <div class="sheet">
+          <div class="sheet-head"><h3 id="i-title"></h3><span class="tag" id="i-tag" hidden>Latest</span></div>
+          <div class="era" id="i-era"></div>
+          <dl class="specs" id="i-specs"><div><dt>Loading</dt><dd>Fetching the build list…</dd></div></dl>
+          <p class="heads" id="i-note" hidden></p>
+          <button class="pill orange get" id="i-get" disabled>Download</button>
           <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
-        </article>
-        <article class="ver">
-          <h3>9.7.1b</h3>
-          <div class="era">December 2023 · Classic</div>
-          <p>The original game from before the Unity remake, with the classic map, missions and Prize Pods.</p>
-          <div class="dl">
-            <button class="pill blue small get" data-build="9.7.1b-android">Android APK<em></em></button>
-          </div>
-          <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
-        </article>
-        <article class="ver">
-          <h3>9.6.1b</h3>
-          <div class="era">May 2023 · Classic</div>
-          <p>An earlier classic build, with its own save and leaderboards.</p>
-          <div class="dl">
-            <button class="pill blue small get" data-build="9.6.1b-android">Android APK<em></em></button>
-            <button class="pill orange small get" data-build="9.6.1b-ios">iOS IPA<em></em></button>
-          </div>
-          <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
-        </article>
+        </div>
       </div>
       <p class="note">Downloads come in parts from GitHub and are checked and put back together in your browser, so keep this tab open until it finishes. Not sure how to install an APK or IPA? See <a href="#install"><b>how to install</b></a> below.</p>
     </div>
@@ -528,8 +522,6 @@ const RAW = "https://raw.githubusercontent.com/dotxr/Minion-Rush-Revival-Builds/
 const MB = n => (n / 1048576).toFixed(n < 1048576 * 10 ? 1 : 0) + " MB";
 const hex = b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("");
 const builds = fetch(RAW + "builds.json", { cache: "no-cache" }).then(r => r.json());
-builds.then(m => $$(".get").forEach(b => { const e = m[b.dataset.build]; if (e) $("em", b).textContent = MB(e.size); })).catch(() => {});
-
 async function part(p, onBytes, signal) {
   for (let attempt = 1; ; attempt++) {
     let got = 0;
@@ -548,45 +540,84 @@ async function part(p, onBytes, signal) {
   }
 }
 
-$$(".ver").forEach(card => {
-  const prog = $(".prog", card), bar = $(".bar i", prog), [left, right] = $$(".stat span", prog), btns = $$(".get", card);
-  let ctl = null;
+const VERS = {
+  "13.3.0": { era: "Unity remake", tag: true, blurb: "The final version of Minion Rush, with the Season Pass, events, collections and the full costume lineup." },
+  "9.7.1b": { era: "Classic", blurb: "The original game from before the Unity remake, with the classic map, missions and Prize Pods." },
+  "9.6.1b": { era: "Classic", blurb: "An earlier classic build, with its own save and leaderboards." },
+};
+const NOTES = { "9.7.1b-android": "Updating an older 9.7.1b install? Clear the app's data once after installing so it downloads the full game data." };
+const PLAT = { android: "Android", ios: "iPhone / iPad" };
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const when = d => { const [y, m, day] = d.split("-").map(Number); return (day ? `${MONTHS[m - 1]} ${day}, ` : `${MONTHS[m - 1]} `) + y; };
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+(async () => {
+  const sel = { ver: $("#i-ver"), plat: $("#i-plat") }, get = $("#i-get"), specs = $("#i-specs");
+  const prog = $(".sheet .prog"), bar = $(".bar i", prog), [left, right] = $$(".stat span", prog);
   const status = (l, r = "") => { left.innerHTML = l; right.textContent = r; };
-  btns.forEach(btn => btn.onclick = async () => {
-    let m;
-    try { m = (await builds)[btn.dataset.build]; } catch { m = null; }
-    prog.hidden = false; prog.className = "prog";
-    if (!m) { prog.classList.add("err"); status("Couldn't load the build list. Check your connection and try again."); return; }
+  let m;
+  try { m = await builds; } catch { specs.innerHTML = "<div class=wide><dt>Couldn't load the build list</dt><dd>Check your connection and reload the page.</dd></div>"; return; }
+  const versions = Object.keys(VERS).filter(v => Object.values(m).some(b => b.version === v));
+  sel.ver.innerHTML = versions.map(v => `<option value="${v}">${v} · ${VERS[v].tag ? "Latest" : VERS[v].era}</option>`).join("");
+  const prefer = /iPhone|iPad|iPod|Macintosh.*Mobile/.test(navigator.userAgent) ? "ios" : "android";
+  const current = () => m[`${sel.ver.value}-${sel.plat.value}`];
+
+  const showBuild = () => {
+    const b = current(), v = VERS[b.version];
+    $("#i-title").textContent = b.version; $("#i-tag").hidden = !v.tag;
+    $("#i-era").textContent = `${v.era} · ${PLAT[b.platform]}`; $("#i-blurb").textContent = v.blurb;
+    const row = (k, val, wide) => `<div${wide ? " class=wide" : ""}><dt>${k}</dt><dd>${val}</dd></div>`;
+    specs.innerHTML = row("Released", when(b.date)) + row("Installs as", esc(b.app))
+      + row(b.platform === "ios" ? "Bundle ID" : "Package", `<code>${esc(b.id)}</code>`) + row("Requires", esc(b.min_os) + " or newer")
+      + row(b.platform === "ios" ? "Runs on" : "CPU", esc(b.archs.join(", "))) + row("Size", `${MB(b.size)} in ${b.parts.length} parts`)
+      + row("File", `<code>${esc(b.name)}</code>`, true)
+      + row("SHA-256", `<code>${b.sha256.slice(0, 16)}…</code><button type="button">Copy</button>`, true);
+    $("button", specs).onclick = e => navigator.clipboard?.writeText(b.sha256).then(() => { e.target.textContent = "Copied"; });
+    const note = NOTES[`${b.version}-${b.platform}`]; $("#i-note").hidden = !note; $("#i-note").textContent = note || "";
+    get.textContent = `Download ${b.platform === "ios" ? "IPA" : "APK"} · ${MB(b.size)}`; get.disabled = false;
+    prog.hidden = true;
+  };
+  const showPlats = () => {
+    const have = Object.keys(PLAT).filter(p => m[`${sel.ver.value}-${p}`]), keep = sel.plat.value || prefer;
+    sel.plat.innerHTML = have.map(p => `<option value="${p}">${PLAT[p]}</option>`).join("");
+    sel.plat.value = have.includes(keep) ? keep : have[0];
+    showBuild();
+  };
+  sel.ver.onchange = showPlats; sel.plat.onchange = showBuild;
+  sel.plat.value = prefer; showPlats();
+
+  let ctl = null;
+  get.onclick = async () => {
+    const b = current();
     let sink = null;
     if (window.showSaveFilePicker) {
-      try { sink = await (await showSaveFilePicker({ suggestedName: m.name })).createWritable(); }
+      try { sink = await (await showSaveFilePicker({ suggestedName: b.name })).createWritable(); }
       catch (e) { if (e.name === "AbortError") return; }
     }
     ctl = new AbortController();
-    btns.forEach(b => b.disabled = true);
-    bar.style.width = "0";
+    get.disabled = sel.ver.disabled = sel.plat.disabled = true;
+    prog.hidden = false; prog.className = "prog"; bar.style.width = "0";
     let done = 0, next = 0, written = 0;
-    const t0 = performance.now(), out = new Array(m.parts.length);
+    const t0 = performance.now(), out = new Array(b.parts.length), waiters = [];
     const tick = n => {
       done += n;
       const s = (performance.now() - t0) / 1000;
-      bar.style.width = (done / m.size * 100).toFixed(1) + "%";
-      status(`Part ${Math.min(written + 1, m.parts.length)} of ${m.parts.length} · ${s > 1 ? MB(done / s) + "/s" : "starting"} · <button type="button">Cancel</button>`, `${MB(done)} / ${MB(m.size)}`);
+      bar.style.width = (done / b.size * 100).toFixed(1) + "%";
+      status(`Part ${Math.min(written + 1, b.parts.length)} of ${b.parts.length} · ${s > 1 ? MB(done / s) + "/s" : "starting"} · <button type="button">Cancel</button>`, `${MB(done)} / ${MB(b.size)}`);
       $("button", left).onclick = () => ctl.abort();
     };
     tick(0);
-    const waiters = [];
     const worker = async () => {
-      while (next < m.parts.length) {
+      while (next < b.parts.length) {
         const i = next++;
-        out[i] = await part(m.parts[i], tick, ctl.signal);
+        out[i] = await part(b.parts[i], tick, ctl.signal);
         waiters[i]?.();
       }
     };
     try {
       const pool = Promise.all(Array.from({ length: 4 }, worker));
       pool.catch(() => ctl.abort());
-      for (let i = 0; i < m.parts.length; i++) {
+      for (let i = 0; i < b.parts.length; i++) {
         if (!out[i]) await Promise.race([new Promise(r => waiters[i] = r), pool]);
         if (!out[i]) throw new Error("download stopped");
         if (sink) { await sink.write(out[i]); out[i] = true; } else out[i] = new Blob([out[i]]);
@@ -596,21 +627,21 @@ $$(".ver").forEach(card => {
       let url = null;
       if (sink) await sink.close();
       else {
-        url = URL.createObjectURL(new Blob(out, { type: m.name.endsWith(".apk") ? "application/vnd.android.package-archive" : "application/octet-stream" }));
-        Object.assign(document.createElement("a"), { href: url, download: m.name }).click();
+        url = URL.createObjectURL(new Blob(out, { type: b.name.endsWith(".apk") ? "application/vnd.android.package-archive" : "application/octet-stream" }));
+        Object.assign(document.createElement("a"), { href: url, download: b.name }).click();
       }
       prog.classList.add("done"); bar.style.width = "100%";
-      status(sink ? `Saved ${m.name}` : `Done. Your browser is saving ${m.name}. <button type="button">Save again</button>`, MB(m.size));
-      if (url) $("button", left).onclick = () => Object.assign(document.createElement("a"), { href: url, download: m.name }).click();
+      status(sink ? `Saved ${esc(b.name)}` : `Done. Your browser is saving ${esc(b.name)}. <button type="button">Save again</button>`, MB(b.size));
+      if (url) $("button", left).onclick = () => Object.assign(document.createElement("a"), { href: url, download: b.name }).click();
     } catch (e) {
       if (sink) sink.abort().catch(() => {});
       prog.classList.add("err");
-      status(ctl.signal.aborted && !String(e.message).includes("check") ? "Download cancelled." : `Download failed (${e.message}). Try again.`);
+      status(ctl.signal.aborted && !String(e.message).includes("check") ? "Download cancelled." : `Download failed (${esc(e.message)}). Try again.`);
     } finally {
-      btns.forEach(b => b.disabled = false);
+      get.disabled = sel.ver.disabled = sel.plat.disabled = false;
     }
-  });
-});
+  };
+})();
 </script>
 </body>
 </html>
