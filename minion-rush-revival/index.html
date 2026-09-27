@@ -93,6 +93,18 @@
   .ver .era { margin: 6px 0 14px; font-weight: 700; color: var(--orange-2); text-transform: uppercase; font-size: .78rem; letter-spacing: .03em; }
   .ver p { margin: 0 0 22px; font-size: .95rem; flex: 1; }
   .ver .dl { display: flex; flex-wrap: wrap; gap: 12px; }
+  .get em { font-style: normal; font-weight: 700; opacity: .75; margin-left: 2px; }
+  .get em:not(:empty)::before { content: "· "; }
+  .get:disabled { opacity: .45; cursor: default; transform: none; }
+  .prog { margin-top: 18px; }
+  .bar { height: 14px; border-radius: 999px; background: #e3edfa; overflow: hidden; box-shadow: inset 0 2px 0 rgba(0, 40, 100, .12); }
+  .bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: repeating-linear-gradient(135deg, var(--gold) 0 12px, var(--orange) 12px 24px); background-size: 34px 34px; animation: stripes 1s linear infinite; transition: width .25s; }
+  @keyframes stripes { to { background-position: 34px 0; } }
+  .prog.done .bar i { background: #43c24e; animation: none; }
+  .prog.err .bar i { background: #e2423b; animation: none; }
+  .stat { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; font-size: .8rem; font-weight: 700; color: var(--blue-2); }
+  .stat span:last-child { white-space: nowrap; }
+  .stat button { border: 0; background: none; padding: 0; font: inherit; color: var(--orange-2); text-decoration: underline; cursor: pointer; }
   .note { text-align: center; margin: 44px auto 0; max-width: 600px; font-size: .95rem; }
 
   /* runners */
@@ -266,28 +278,32 @@
           <div class="era">July 2026 · Unity</div>
           <p>The final version of Minion Rush, with the Season Pass, events, collections and the full costume lineup.</p>
           <div class="dl">
-            <a class="pill blue small" href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/13.3.0/MinionRushRevived-13.3.0.apk">Android APK</a>
-            <a class="pill orange small" href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/13.3.0/MinionRushRevived-13.3.0.ipa">iOS IPA</a>
+            <button class="pill blue small get" data-build="13.3.0-android">Android APK<em></em></button>
+            <button class="pill orange small get" data-build="13.3.0-ios">iOS IPA<em></em></button>
           </div>
+          <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
         </article>
         <article class="ver">
           <h3>9.7.1b</h3>
           <div class="era">December 2023 · Classic</div>
           <p>The original game from before the Unity remake, with the classic map, missions and Prize Pods.</p>
           <div class="dl">
-            <a class="pill blue small" href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/9.7.1b/MinionRushRevived-9.7.1b.apk">Android APK</a>
+            <button class="pill blue small get" data-build="9.7.1b-android">Android APK<em></em></button>
           </div>
+          <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
         </article>
         <article class="ver">
           <h3>9.6.1b</h3>
           <div class="era">May 2023 · Classic</div>
-          <p>An earlier classic build for iPhone and iPad, with its own save and leaderboards.</p>
+          <p>An earlier classic build, with its own save and leaderboards.</p>
           <div class="dl">
-            <a class="pill orange small" href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/9.6.1b/MinionRushRevived-9.6.1b.ipa">iOS IPA</a>
+            <button class="pill blue small get" data-build="9.6.1b-android">Android APK<em></em></button>
+            <button class="pill orange small get" data-build="9.6.1b-ios">iOS IPA<em></em></button>
           </div>
+          <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
         </article>
       </div>
-      <p class="note">Not sure how to install an APK or IPA? See <a href="#install"><b>how to install</b></a> below.</p>
+      <p class="note">Downloads come in parts from GitHub and are checked and put back together in your browser, so keep this tab open until it finishes. Not sure how to install an APK or IPA? See <a href="#install"><b>how to install</b></a> below.</p>
     </div>
   </section>
 
@@ -409,7 +425,7 @@
   <div class="links">
     <a href="https://discord.gg/8bqYUns56b">Discord</a>
     <a href="https://github.com/dotxr/Minion-Rush-Revival">GitHub</a>
-    <a href="https://github.com/dotxr/Minion-Rush-Revival/releases">Releases</a>
+    <a href="https://github.com/dotxr/Minion-Rush-Revival-Builds">Builds</a>
   </div>
   <p>Unofficial, non-commercial fan project. Not affiliated with or endorsed by Gameloft, Universal, Illumination or NBCUniversal. Minion Rush and Despicable Me belong to their owners.</p>
 </footer>
@@ -505,6 +521,95 @@ addEventListener("resize", showLoc); showLoc();
 // screenshot tabs
 $$(".tab").forEach(t => t.onclick = () => {
   $$(".tab").forEach(x => { x.setAttribute("aria-selected", x === t); $("#" + x.getAttribute("aria-controls")).hidden = x !== t; });
+});
+
+// downloads: parts from the builds repo, checked and put back together here
+const RAW = "https://raw.githubusercontent.com/dotxr/Minion-Rush-Revival-Builds/main/";
+const MB = n => (n / 1048576).toFixed(n < 1048576 * 10 ? 1 : 0) + " MB";
+const hex = b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("");
+const builds = fetch(RAW + "builds.json", { cache: "no-cache" }).then(r => r.json());
+builds.then(m => $$(".get").forEach(b => { const e = m[b.dataset.build]; if (e) $("em", b).textContent = MB(e.size); })).catch(() => {});
+
+async function part(p, onBytes, signal) {
+  for (let attempt = 1; ; attempt++) {
+    let got = 0;
+    try {
+      const r = await fetch(RAW + p.file, { signal, cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const reader = r.body.getReader(), buf = new Uint8Array(p.size);
+      for (let c; !(c = await reader.read()).done;) { buf.set(c.value, got); got += c.value.length; onBytes(c.value.length); }
+      if (got !== p.size || hex(await crypto.subtle.digest("SHA-256", buf)) !== p.sha256) throw new Error("part check failed");
+      return buf;
+    } catch (e) {
+      onBytes(-got);
+      if (signal.aborted || attempt >= 4) throw e;
+      await new Promise(r => setTimeout(r, 1500 * attempt));
+    }
+  }
+}
+
+$$(".ver").forEach(card => {
+  const prog = $(".prog", card), bar = $(".bar i", prog), [left, right] = $$(".stat span", prog), btns = $$(".get", card);
+  let ctl = null;
+  const status = (l, r = "") => { left.innerHTML = l; right.textContent = r; };
+  btns.forEach(btn => btn.onclick = async () => {
+    let m;
+    try { m = (await builds)[btn.dataset.build]; } catch { m = null; }
+    prog.hidden = false; prog.className = "prog";
+    if (!m) { prog.classList.add("err"); status("Couldn't load the build list. Check your connection and try again."); return; }
+    let sink = null;
+    if (window.showSaveFilePicker) {
+      try { sink = await (await showSaveFilePicker({ suggestedName: m.name })).createWritable(); }
+      catch (e) { if (e.name === "AbortError") return; }
+    }
+    ctl = new AbortController();
+    btns.forEach(b => b.disabled = true);
+    bar.style.width = "0";
+    let done = 0, next = 0, written = 0;
+    const t0 = performance.now(), out = new Array(m.parts.length);
+    const tick = n => {
+      done += n;
+      const s = (performance.now() - t0) / 1000;
+      bar.style.width = (done / m.size * 100).toFixed(1) + "%";
+      status(`Part ${Math.min(written + 1, m.parts.length)} of ${m.parts.length} · ${s > 1 ? MB(done / s) + "/s" : "starting"} · <button type="button">Cancel</button>`, `${MB(done)} / ${MB(m.size)}`);
+      $("button", left).onclick = () => ctl.abort();
+    };
+    tick(0);
+    const waiters = [];
+    const worker = async () => {
+      while (next < m.parts.length) {
+        const i = next++;
+        out[i] = await part(m.parts[i], tick, ctl.signal);
+        waiters[i]?.();
+      }
+    };
+    try {
+      const pool = Promise.all(Array.from({ length: 4 }, worker));
+      pool.catch(() => ctl.abort());
+      for (let i = 0; i < m.parts.length; i++) {
+        if (!out[i]) await Promise.race([new Promise(r => waiters[i] = r), pool]);
+        if (!out[i]) throw new Error("download stopped");
+        if (sink) { await sink.write(out[i]); out[i] = true; } else out[i] = new Blob([out[i]]);
+        written = i + 1;
+      }
+      await pool;
+      let url = null;
+      if (sink) await sink.close();
+      else {
+        url = URL.createObjectURL(new Blob(out, { type: m.name.endsWith(".apk") ? "application/vnd.android.package-archive" : "application/octet-stream" }));
+        Object.assign(document.createElement("a"), { href: url, download: m.name }).click();
+      }
+      prog.classList.add("done"); bar.style.width = "100%";
+      status(sink ? `Saved ${m.name}` : `Done. Your browser is saving ${m.name}. <button type="button">Save again</button>`, MB(m.size));
+      if (url) $("button", left).onclick = () => Object.assign(document.createElement("a"), { href: url, download: m.name }).click();
+    } catch (e) {
+      if (sink) sink.abort().catch(() => {});
+      prog.classList.add("err");
+      status(ctl.signal.aborted && !String(e.message).includes("check") ? "Download cancelled." : `Download failed (${e.message}). Try again.`);
+    } finally {
+      btns.forEach(b => b.disabled = false);
+    }
+  });
 });
 </script>
 </body>
