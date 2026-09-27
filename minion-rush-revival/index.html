@@ -4,86 +4,508 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Minion Rush Revival</title>
-<meta name="description" content="Keep playing Minion Rush after the shutdown. Every major version, running on our own server.">
+<meta name="description" content="Keep playing Minion Rush after the shutdown. Three versions of the game, running on our own server.">
+<meta property="og:title" content="Minion Rush Revival">
+<meta property="og:description" content="Keep playing Minion Rush after the shutdown.">
+<meta property="og:image" content="https://dotxr.github.io/minion-rush-revival/img/2020/hero.webp">
+<meta name="theme-color" content="#0658b5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #14163a; --card: #1f2356; --text: #f4f4fb; --muted: #b8bbe0; --yellow: #ffd23f; --blue: #4a7dff; }
+  :root {
+    --blue: #0658b5; --blue-2: #155fbb; --blue-deep: #0a3a7a; --sky: #1a8cff;
+    --orange: #ff8000; --orange-2: #ff6e00; --gold: #faa910; --yellow: #ffd93b;
+    --ink: #0d2c57; --white: #fff; --paper: #f4f8ff;
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 900px; margin: 0 auto; padding: 32px 16px 48px; }
-  h1 { color: var(--yellow); font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 8px; }
-  h2 { margin: 40px 0 12px; }
-  h3 { margin: 24px 0 8px; color: var(--muted); font-weight: 600; }
-  p { margin: 0 0 12px; }
-  a { color: var(--yellow); }
-  .lead { color: var(--muted); font-size: 1.1rem; }
-  .btn { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; padding: 10px 18px; border-radius: 10px; font-weight: 600; margin: 8px 8px 0 0; }
-  .btn.discord { background: #5865f2; }
-  .card { background: var(--card); border-radius: 14px; padding: 16px 20px; overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; }
-  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #2f3470; vertical-align: top; }
-  th { color: var(--muted); font-weight: 600; }
-  td a { font-weight: 600; }
-  .shots { display: flex; gap: 12px; flex-wrap: wrap; }
-  .shots img { width: calc(33.333% - 8px); min-width: 140px; flex: 1 1 140px; border-radius: 10px; }
-  ol { padding-left: 20px; margin: 0; }
-  li { margin-bottom: 6px; }
-  footer { margin-top: 48px; color: var(--muted); font-size: 0.85rem; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--white); color: var(--ink); font: 500 16px/1.6 Montserrat, Gotham, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 6px; }
+
+  /* preloader: the 2020 goggles */
+  .pre { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: #f2c21b url(img/2020/pre-bg.webp) center/cover; transition: opacity .5s, visibility .5s; }
+  .pre::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 4%; background: #111; transform: translateY(-50%); }
+  .pre.done { opacity: 0; visibility: hidden; }
+  .goggles { position: relative; display: flex; gap: 0; width: min(420px, 78vw); }
+  .lens { position: relative; flex: 1; aspect-ratio: 1; background: url(img/2020/pre-glasses.webp) center/contain no-repeat; display: grid; place-items: center; }
+  .lens::before { content: ""; position: absolute; inset: 21%; border-radius: 50%; background: #fff; box-shadow: inset 0 -8px 18px rgba(0,0,0,.18); }
+  .lens i { position: relative; width: 30%; aspect-ratio: 1; background: url(img/2020/pre-eye.webp) center/contain no-repeat; animation: look 3s ease-in-out infinite; }
+  @keyframes look { 20% { transform: translate(40%, 25%); } 45% { transform: translate(-30%, 0); } 70% { transform: translate(-35%, 30%); } 85% { transform: translate(45%, -10%); } }
+
+  /* header */
+  header { position: fixed; inset: 0 0 auto; z-index: 100; display: flex; align-items: center; gap: 24px; padding: 12px clamp(16px, 4vw, 48px); transition: background .25s, box-shadow .25s; }
+  header.solid { background: rgba(6, 88, 181, .96); box-shadow: 0 6px 24px rgba(0, 30, 80, .25); }
+  .brand img { height: clamp(22px, 3vw, 30px); width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,.35)); }
+  nav { margin-left: auto; display: flex; gap: clamp(12px, 2vw, 28px); }
+  nav a { color: #fff; text-decoration: none; font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; text-shadow: 0 1px 3px rgba(0,0,0,.4); }
+  nav a:hover { color: var(--yellow); }
+  .pill { display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 999px; padding: 14px 28px; font: 900 .9rem/1 Montserrat, sans-serif; text-transform: uppercase; text-decoration: none; letter-spacing: .03em; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+  .pill:hover { transform: translateY(-2px); }
+  .pill:active { transform: translateY(1px); }
+  .pill.orange { background: linear-gradient(#ff9a1f, var(--orange-2)); color: #fff; box-shadow: 0 5px 0 #c24d00, 0 10px 20px rgba(194, 77, 0, .35); }
+  .pill.blue { background: linear-gradient(#1b73d6, var(--blue)); color: #fff; box-shadow: 0 5px 0 #043e80, 0 10px 20px rgba(4, 62, 128, .3); }
+  .pill.white { background: #fff; color: var(--blue); box-shadow: 0 5px 0 #b9cde8, 0 10px 20px rgba(0, 30, 80, .2); }
+  .pill.small { padding: 11px 20px; font-size: .78rem; }
+  .pill svg { width: 20px; height: 20px; fill: currentColor; }
+  .menu-btn { display: none; margin-left: auto; background: none; border: 0; color: #fff; padding: 6px; cursor: pointer; }
+  .menu-btn svg { width: 28px; height: 28px; }
+
+  /* shared section type: the 2020 two-line heading */
+  section { position: relative; padding: clamp(72px, 10vw, 128px) 16px; }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .head { text-align: center; margin: 0 auto 40px; max-width: 640px; }
+  .head h2 { margin: 0; text-transform: uppercase; line-height: 1.02; }
+  .head h2 small { display: block; font-size: clamp(.95rem, 1.6vw, 1.15rem); font-weight: 700; letter-spacing: .02em; }
+  .head h2 span { display: block; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; letter-spacing: -.01em; }
+  .head p { margin: 14px 0 0; font-size: 1rem; }
+  .on-color, .on-color .head { color: #fff; }
+  .on-color .head h2 { text-shadow: 0 3px 0 rgba(0, 0, 0, .12); }
+
+  /* hero */
+  .hero { min-height: min(100svh, 900px); padding: 0; display: flex; align-items: flex-end; background: #2a8fd8 url(img/2020/hero.webp) 62% center/cover; color: #fff; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4, 40, 90, .78) 0%, rgba(4, 40, 90, .35) 42%, rgba(4, 40, 90, 0) 62%), linear-gradient(0deg, rgba(4, 40, 90, .55), transparent 40%); }
+  .hero .wrap { position: relative; z-index: 1; width: 100%; padding: 120px clamp(0px, 2vw, 24px) clamp(56px, 9vh, 96px); }
+  .hero img.logo { width: min(460px, 82vw); height: auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.45)); }
+  .hero h1 { margin: 22px 0 10px; font-size: clamp(1.6rem, 3.6vw, 2.6rem); font-weight: 900; line-height: 1.08; text-transform: uppercase; max-width: 15ch; text-shadow: 0 3px 10px rgba(0,0,0,.35); }
+  .hero p { max-width: 42ch; margin: 0 0 28px; font-size: 1.05rem; text-shadow: 0 2px 6px rgba(0,0,0,.4); }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 16px; }
+
+  /* run with the minions */
+  .run { background: var(--orange) url(img/2020/run-minion-bg.webp) center/cover; overflow: hidden; }
+  .run .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 72px); align-items: center; }
+  .run .phone { justify-self: center; width: min(330px, 70vw); filter: drop-shadow(0 30px 40px rgba(120, 40, 0, .45)); transform: rotate(-4deg); }
+  .run .head { text-align: left; margin: 0 0 28px; }
+  .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .facts li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; background: rgba(255, 255, 255, .14); border: 2px solid rgba(255, 255, 255, .25); border-radius: 18px; padding: 14px 18px; }
+  .facts li img { width: 44px; height: 44px; object-fit: contain; }
+  .facts b { display: block; font-weight: 900; text-transform: uppercase; font-size: .95rem; }
+
+  /* download */
+  .download { background: var(--sky) url(img/2020/newsletter-bg.webp) center/cover; }
+  .versions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .ver { position: relative; background: #fff; color: var(--ink); border-radius: 26px; padding: 28px 24px 26px; box-shadow: 0 8px 0 #0b56a8, 0 24px 40px rgba(0, 40, 100, .25); display: flex; flex-direction: column; }
+  .ver.latest { background: linear-gradient(#fff, #fff8e1); box-shadow: 0 8px 0 #d68a00, 0 24px 40px rgba(0, 40, 100, .25); }
+  .ver .tag { position: absolute; top: -14px; left: 24px; background: var(--orange); color: #fff; font-weight: 900; font-size: .72rem; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+  .ver h3 { margin: 0; font-size: 2.4rem; font-weight: 900; color: var(--blue); line-height: 1; }
+  .ver .era { margin: 6px 0 14px; font-weight: 700; color: var(--orange-2); text-transform: uppercase; font-size: .78rem; letter-spacing: .03em; }
+  .ver p { margin: 0 0 22px; font-size: .95rem; flex: 1; }
+  .ver .dl { display: flex; flex-wrap: wrap; gap: 12px; }
+  .note { text-align: center; margin: 44px auto 0; max-width: 600px; font-size: .95rem; }
+
+  /* runners */
+  .runners { background: var(--blue) url(img/2020/main-minions-bg.webp) center/cover; overflow: hidden; }
+  .stage { max-width: 900px; margin: 0 auto; display: flex; justify-content: center; align-items: flex-end; gap: clamp(4px, 2vw, 28px); min-height: clamp(220px, 34vw, 380px); }
+  .runner { background: none; border: 0; padding: 0; cursor: pointer; flex: 0 1 22%; transition: flex-basis .35s cubic-bezier(.3, 1.4, .5, 1), filter .3s; filter: saturate(.6) brightness(.85); }
+  .runner img { width: 100%; height: auto; filter: drop-shadow(0 16px 12px rgba(0, 30, 80, .45)); }
+  .runner[aria-pressed="true"] { flex-basis: 30%; filter: none; }
+  .runner-info { text-align: center; margin-top: 26px; min-height: 5.5em; }
+  .runner-info h3 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; text-transform: uppercase; }
+  .runner-info p { margin: 6px auto 0; max-width: 46ch; }
+
+  /* costumes: the 2020 path slider */
+  .costumes { background: var(--orange-2) url(img/2020/costume-bg.webp) center/cover; overflow: hidden; padding-bottom: clamp(48px, 7vw, 88px); }
+  .arc { position: relative; }
+  .arc-track { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 30px calc(50vw - 80px) 150px; scrollbar-width: none; cursor: grab; }
+  .arc-track::-webkit-scrollbar { display: none; }
+  .arc svg.path { position: absolute; left: 0; right: 0; bottom: 70px; width: 100%; height: 200px; pointer-events: none; }
+  .cos { flex: 0 0 160px; scroll-snap-align: center; text-align: center; color: #fff; transform: translateY(var(--y, 0)) scale(var(--s, 1)); transition: transform .12s linear; }
+  .cos img { height: 190px; width: auto; margin: 0 auto; object-fit: contain; filter: drop-shadow(0 12px 10px rgba(110, 30, 0, .4)); pointer-events: none; }
+  .cos span { display: block; margin-top: 8px; font-weight: 900; text-transform: uppercase; font-size: .85rem; opacity: var(--o, .6); }
+  .arc-nav { display: flex; justify-content: center; gap: 16px; margin-top: -90px; position: relative; }
+  .round { width: 52px; height: 52px; border-radius: 50%; border: 3px solid #fff; background: rgba(255,255,255,.12); color: #fff; display: grid; place-items: center; cursor: pointer; }
+  .round:hover { background: #fff; color: var(--orange-2); }
+  .round svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* locations */
+  .locations { overflow: hidden; }
+  .locations .head { color: var(--orange-2); }
+  .loc-stage { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; align-items: center; gap: 12px; max-width: 900px; margin: 0 auto; }
+  .loc-view { --F: 230px; position: relative; display: flex; justify-content: center; align-items: center; height: calc(var(--F) * 1.8); perspective: 1200px; }
+  .loc-card { position: absolute; left: 50%; top: 50%; width: calc(var(--F) * .695); aspect-ratio: 278/495; border-radius: 10px; overflow: hidden; box-shadow: 0 14px 30px rgba(0, 30, 80, .25); transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .45s; }
+  .loc-card img { width: 100%; height: 100%; object-fit: cover; }
+  .loc-frame { position: relative; z-index: 20; width: var(--F); pointer-events: none; filter: drop-shadow(0 20px 30px rgba(0, 30, 80, .25)); }
+  .loc-stage .round { position: relative; z-index: 30; border-color: var(--blue); color: var(--blue); background: #fff; }
+  .loc-stage .round:hover { background: var(--blue); color: #fff; }
+  .loc-text { text-align: center; margin-top: 26px; color: var(--blue); min-height: 4.5em; }
+  .loc-text h3 { margin: 0; font-size: 1.7rem; font-weight: 900; text-transform: uppercase; }
+  .loc-text p { margin: 4px 0 0; }
+
+  /* screenshots */
+  .shots { background: var(--paper); }
+  .shots .head { color: var(--blue); }
+  .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 36px; flex-wrap: wrap; }
+  .tab { border: 3px solid var(--blue); background: #fff; color: var(--blue); border-radius: 999px; padding: 10px 22px; font: 900 .9rem Montserrat, sans-serif; cursor: pointer; }
+  .tab[aria-selected="true"] { background: var(--blue); color: #fff; }
+  .panel { display: flex; justify-content: center; gap: clamp(14px, 3vw, 32px); }
+  .panel[hidden] { display: none; }
+  .panel figure { margin: 0; flex: 0 1 300px; }
+  .panel img { width: 100%; border-radius: 22px; border: 6px solid #fff; box-shadow: 0 18px 40px rgba(6, 88, 181, .22); }
+  .panel figcaption { text-align: center; margin-top: 12px; font-weight: 700; color: var(--blue-2); font-size: .9rem; }
+
+  /* install */
+  .install .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 64px); align-items: center; }
+  .install .faq-minion { width: min(360px, 70vw); justify-self: center; }
+  .install .head { text-align: left; margin: 0 0 24px; color: var(--blue); }
+  details { border-top: 3px solid var(--blue-2); color: var(--blue-2); }
+  details:last-of-type { border-bottom: 3px solid var(--blue-2); }
+  summary { list-style: none; cursor: pointer; padding: 18px 44px 18px 0; position: relative; font-weight: 900; font-size: 1.15rem; text-transform: uppercase; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; background: var(--gold); color: #fff; display: grid; place-items: center; font-size: 1.3rem; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details ol { margin: 0 0 20px; padding-left: 22px; color: var(--ink); }
+  details li { margin-bottom: 8px; }
+  details li::marker { font-weight: 900; color: var(--orange-2); }
+  details p { margin: 0 0 20px; color: var(--ink); font-size: .92rem; }
+  details a { color: var(--blue); font-weight: 700; }
+
+  /* community */
+  .community { background: var(--blue) url(img/2020/videos-bg.webp) center/cover; overflow: hidden; }
+  .community .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 32px; align-items: center; }
+  .community .head { text-align: left; margin: 0 0 30px; }
+  .community .ctas { display: flex; flex-wrap: wrap; gap: 16px; }
+  .community .mascot { width: min(340px, 70vw); justify-self: center; filter: drop-shadow(0 20px 24px rgba(0, 20, 60, .4)); }
+
+  footer { background: var(--blue-deep); color: #c8dbf5; padding: 48px 16px 40px; text-align: center; font-size: .85rem; }
+  footer img { height: 26px; width: auto; margin: 0 auto 18px; }
+  footer .links { display: flex; justify-content: center; gap: 22px; margin-bottom: 18px; }
+  footer .links a { color: #fff; font-weight: 900; text-transform: uppercase; text-decoration: none; font-size: .8rem; }
+  footer p { max-width: 640px; margin: 0 auto; }
+
+  @media (max-width: 900px) {
+    nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--blue); padding: 8px 16px 16px; }
+    nav.open { display: flex; }
+    nav a { padding: 12px 0; font-size: .95rem; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .menu-btn { display: block; }
+    header .pill { display: none; }
+    header:has(nav.open) { background: var(--blue); }
+    .versions { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; gap: 30px; }
+    .run .wrap, .install .wrap, .community .wrap { grid-template-columns: 1fr; }
+    .run .phone { width: min(240px, 60vw); order: 2; }
+    .install .faq-minion, .community .mascot { width: 200px; order: -1; }
+    .hero { background-position: 70% center; }
+    .hero::after { background: linear-gradient(0deg, rgba(4, 40, 90, .88) 0%, rgba(4, 40, 90, .5) 45%, rgba(4, 40, 90, 0) 75%); }
+  }
+  @media (max-width: 560px) {
+    .loc-stage { grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 4px; }
+    .round { width: 44px; height: 44px; }
+    .loc-view { --F: 170px; }
+    .cos { flex-basis: 120px; }
+    .cos img { height: 140px; }
+    .arc-track { padding-inline: calc(50vw - 60px); }
+    .panel figure { flex-basis: 50%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1>Minion Rush Revival</h1>
-  <p class="lead">Minion Rush is shutting down. These builds run on our own server, so you can keep playing. Every version keeps its own progress and leaderboards.</p>
-  <a class="btn discord" href="https://discord.gg/8bqYUns56b">Join our Discord</a>
-  <a class="btn" href="https://github.com/dotxr/Minion-Rush-Revival">GitHub</a>
 
-  <h2>Download</h2>
-  <div class="card">
-    <table>
-      <tr><th>Version</th><th>What it is</th><th>Android</th><th>iPhone / iPad</th></tr>
-      <tr><td><b>13.3.0</b></td><td>The final Unity version</td>
-        <td><a href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/13.3.0/MinionRushRevived-13.3.0.apk">APK</a></td>
-        <td><a href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/13.3.0/MinionRushRevived-13.3.0.ipa">IPA</a></td></tr>
-      <tr><td><b>9.7.1b</b></td><td>The original game, before the Unity remake</td>
-        <td><a href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/9.7.1b/MinionRushRevived-9.7.1b.apk">APK</a></td><td></td></tr>
-      <tr><td><b>9.6.1b</b></td><td>The original game, before the Unity remake</td><td></td>
-        <td><a href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/9.6.1b/MinionRushRevived-9.6.1b.ipa">IPA</a></td></tr>
-    </table>
-  </div>
+<div class="pre" aria-hidden="true">
+  <div class="goggles"><div class="lens"><i></i></div><div class="lens"><i></i></div></div>
+</div>
 
-  <h2>Screenshots</h2>
-  <h3>13.3.0</h3>
-  <div class="shots">
-    <img src="img/screenshot2.png" alt="13.3.0 main menu">
-    <img src="img/screenshot.png" alt="13.3.0 profile">
-  </div>
-  <h3>9.7.1b</h3>
-  <div class="shots">
-    <img src="img/legacy-9.7.1b-menu.png" alt="9.7.1b main menu">
-    <img src="img/legacy-9.7.1b-run.png" alt="9.7.1b run">
-  </div>
-  <h3>9.6.1b</h3>
-  <div class="shots">
-    <img src="img/legacy-9.6.1b-menu.png" alt="9.6.1b main menu">
-    <img src="img/legacy-9.6.1b-run.png" alt="9.6.1b run">
-  </div>
+<header>
+  <a class="brand" href="#top" aria-label="Minion Rush Revival home"><img src="img/2020/logo.webp" alt="Minion Rush" width="600" height="82"></a>
+  <button class="menu-btn" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <nav>
+    <a href="#download">Download</a>
+    <a href="#runners">Runners</a>
+    <a href="#locations">Locations</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#install">Install</a>
+    <a href="#community">Community</a>
+  </nav>
+  <a class="pill orange small" href="https://discord.gg/8bqYUns56b">Join the run</a>
+</header>
 
-  <h2>How to install</h2>
-  <h3>Android</h3>
-  <ol>
-    <li>Download the APK for the version you want on your phone.</li>
-    <li>Open it, allow installing from that app when asked, then tap <b>Install</b>.</li>
-  </ol>
-  <h3>iPhone / iPad</h3>
-  <ol>
-    <li>Install <a href="https://sideloadly.io">Sideloadly</a> on your computer.</li>
-    <li>Plug in your phone, drag the IPA into Sideloadly, sign in with your Apple ID and press <b>Start</b>.</li>
-    <li>On your phone, trust your Apple ID in <b>Settings &gt; General &gt; VPN &amp; Device Management</b>.</li>
-    <li>On iOS 16 or newer, turn on <b>Settings &gt; Privacy &amp; Security &gt; Developer Mode</b>.</li>
-  </ol>
-  <p style="margin-top:12px">With a free Apple ID the app stops opening after 7 days. Just sideload it again; your save won't be lost.</p>
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <img class="logo" src="img/2020/logo.webp" alt="Minion Rush" width="600" height="82">
+      <h1>Back online. Keep running.</h1>
+      <p>Gameloft switched the servers off. We built new ones. Download the game, sign in and keep running, with your events, leaderboards and store all working.</p>
+      <div class="ctas">
+        <a class="pill orange" href="#download">Download the game</a>
+        <a class="pill white" href="https://discord.gg/8bqYUns56b">Join our Discord</a>
+      </div>
+    </div>
+  </section>
 
-  <footer>Unofficial, non-commercial fan project. Not affiliated with or endorsed by Gameloft, Universal, Illumination or NBCUniversal. Minion Rush and Despicable Me belong to their owners.</footer>
+  <section class="run on-color">
+    <div class="wrap">
+      <img class="phone" src="img/2020/minion-ip7.webp" alt="Minion Rush running on a phone" width="359" height="589" loading="lazy">
+      <div>
+        <div class="head">
+          <h2><small>Run with</small><span>the minions</span></h2>
+          <p>The only runner packed with all the fun of the Despicable Me movies is back online. This is a fan revival, so it's free, with no ads.</p>
+        </div>
+        <ul class="facts">
+          <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Three versions</b>Play the final 13.3.0 or go back to 9.7.1b and 9.6.1b, the classic game from before the remake.</div></li>
+          <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Separate progress</b>Each version keeps its own save, so progress in one doesn't touch the others.</div></li>
+          <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Real leaderboards</b>Race against the other players on the revival server, not bots.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="download on-color" id="download">
+    <div class="wrap">
+      <div class="head">
+        <h2><small>Pick your</small><span>version</span></h2>
+        <p>Every download already points at our server. Install it and play.</p>
+      </div>
+      <div class="versions">
+        <article class="ver latest">
+          <span class="tag">Latest</span>
+          <h3>13.3.0</h3>
+          <div class="era">July 2026 · Unity</div>
+          <p>The final version of Minion Rush, with the Season Pass, events, collections and the full costume lineup.</p>
+          <div class="dl">
+            <a class="pill blue small" href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/13.3.0/MinionRushRevived-13.3.0.apk">Android APK</a>
+            <a class="pill orange small" href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/13.3.0/MinionRushRevived-13.3.0.ipa">iOS IPA</a>
+          </div>
+        </article>
+        <article class="ver">
+          <h3>9.7.1b</h3>
+          <div class="era">December 2023 · Classic</div>
+          <p>The original game from before the Unity remake, with the classic map, missions and Prize Pods.</p>
+          <div class="dl">
+            <a class="pill blue small" href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/9.7.1b/MinionRushRevived-9.7.1b.apk">Android APK</a>
+          </div>
+        </article>
+        <article class="ver">
+          <h3>9.6.1b</h3>
+          <div class="era">May 2023 · Classic</div>
+          <p>An earlier classic build for iPhone and iPad, with its own save and leaderboards.</p>
+          <div class="dl">
+            <a class="pill orange small" href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/9.6.1b/MinionRushRevived-9.6.1b.ipa">iOS IPA</a>
+          </div>
+        </article>
+      </div>
+      <p class="note">Not sure how to install an APK or IPA? See <a href="#install"><b>how to install</b></a> below.</p>
+    </div>
+  </section>
+
+  <section class="runners on-color" id="runners">
+    <div class="wrap">
+      <div class="head">
+        <h2><small>Race with your</small><span>favorite minions</span></h2>
+        <p>Unlock all four Minions and get ready for despicable adventures.</p>
+      </div>
+      <div class="stage" role="group" aria-label="Choose a runner">
+        <button class="runner" data-desc="Unlock the quick Carl by collecting his Costume Cards as you accomplish missions."><img src="img/2020/minion-carl.webp" alt="Carl" loading="lazy"></button>
+        <button class="runner" aria-pressed="true" data-desc="Begin your run with the beloved Dave!"><img src="img/2020/minion-dave.webp" alt="Dave" loading="lazy"></button>
+        <button class="runner" data-desc="Unlock the jumpy Jerry by collecting his Costume Cards as you accomplish missions."><img src="img/2020/minion-jerry.webp" alt="Jerry" loading="lazy"></button>
+        <button class="runner" data-desc="Unlock the mischievous Mel by collecting his Costume Cards as you accomplish missions."><img src="img/2020/minion-mel.webp" alt="Mel" loading="lazy"></button>
+      </div>
+      <div class="runner-info" aria-live="polite"><h3>Dave</h3><p>Begin your run with the beloved Dave!</p></div>
+    </div>
+  </section>
+
+  <section class="costumes on-color">
+    <div class="head">
+      <h2><small>Collect all the</small><span>minion costumes</span></h2>
+      <p>Collect Costume Cards to unlock all the Minion disguises. Each costume has its own skill and power-up.</p>
+    </div>
+    <div class="arc">
+      <svg class="path" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"><path d="M-20 190 Q500 -30 1020 190" fill="none" stroke="#ffd93b" stroke-width="4" vector-effect="non-scaling-stroke"/></svg>
+      <div class="arc-track" tabindex="0" aria-label="Costumes"></div>
+      <div class="arc-nav">
+        <button class="round" data-dir="-1" aria-label="Previous costume"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="round" data-dir="1" aria-label="Next costume"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="locations" id="locations">
+    <div class="wrap">
+      <div class="head"><h2><small>Run across</small><span>iconic locations</span></h2></div>
+      <div class="loc-stage">
+        <button class="round" data-dir="-1" aria-label="Previous location"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="loc-view"><img class="loc-frame" src="img/2020/iphone.webp" alt="" width="400" height="685"></div>
+        <button class="round" data-dir="1" aria-label="Next location"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <div class="loc-text" aria-live="polite"><h3></h3><p></p></div>
+    </div>
+  </section>
+
+  <section class="shots" id="screenshots">
+    <div class="wrap">
+      <div class="head"><h2><small>Running on</small><span>our server</span></h2><p>Real screenshots from the revival builds.</p></div>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p133">13.3.0</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p971">9.7.1b</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p961">9.6.1b</button>
+      </div>
+      <div class="panel" id="p133" role="tabpanel">
+        <figure><img src="img/screenshot2.png" alt="13.3.0 main menu" loading="lazy"><figcaption>Main menu</figcaption></figure>
+        <figure><img src="img/screenshot.png" alt="13.3.0 profile" loading="lazy"><figcaption>Profile</figcaption></figure>
+      </div>
+      <div class="panel" id="p971" role="tabpanel" hidden>
+        <figure><img src="img/legacy-9.7.1b-menu.png" alt="9.7.1b main menu" loading="lazy"><figcaption>Main menu, Android emulator</figcaption></figure>
+        <figure><img src="img/legacy-9.7.1b-run.png" alt="9.7.1b run" loading="lazy"><figcaption>In a run, Android emulator</figcaption></figure>
+      </div>
+      <div class="panel" id="p961" role="tabpanel" hidden>
+        <figure><img src="img/legacy-9.6.1b-menu.png" alt="9.6.1b main menu" loading="lazy"><figcaption>Main menu</figcaption></figure>
+        <figure><img src="img/legacy-9.6.1b-run.png" alt="9.6.1b run" loading="lazy"><figcaption>In a run</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="install" id="install">
+    <div class="wrap">
+      <img class="faq-minion" src="img/2020/faq.webp" alt="" width="640" height="698" loading="lazy">
+      <div>
+        <div class="head"><h2><small>How to</small><span>install</span></h2></div>
+        <details open>
+          <summary>Android</summary>
+          <ol>
+            <li>On your phone, download the APK for the version you want.</li>
+            <li>Open it. When asked, allow installing from that app, then tap <b>Install</b>.</li>
+          </ol>
+        </details>
+        <details>
+          <summary>iPhone / iPad</summary>
+          <ol>
+            <li>Install <a href="https://sideloadly.io">Sideloadly</a> on your computer.</li>
+            <li>Plug in your phone, drag the IPA into Sideloadly, sign in with your Apple ID and press <b>Start</b>.</li>
+            <li>On your phone, trust your Apple ID in <b>Settings › General › VPN &amp; Device Management</b>.</li>
+            <li>On iOS 16 or newer, turn on <b>Settings › Privacy &amp; Security › Developer Mode</b>.</li>
+          </ol>
+          <p>With a free Apple ID the app stops opening after 7 days. Sideload it again and your save stays.</p>
+        </details>
+        <details>
+          <summary>Something's wrong</summary>
+          <p>Ask in the <a href="https://discord.gg/8bqYUns56b">Discord</a> or open an issue on <a href="https://github.com/dotxr/Minion-Rush-Revival/issues">GitHub</a>. Include your version and your phone model.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="community on-color" id="community">
+    <div class="wrap">
+      <div>
+        <div class="head">
+          <h2><small>Join the</small><span>community</span></h2>
+          <p>Chat with other runners, report bugs and hear about new builds first on Discord. The whole project is open source on GitHub.</p>
+        </div>
+        <div class="ctas">
+          <a class="pill white" href="https://discord.gg/8bqYUns56b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3l1.3-2a13 13 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.7ZM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>Join our Discord</a>
+          <a class="pill orange" href="https://github.com/dotxr/Minion-Rush-Revival"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg>View on GitHub</a>
+        </div>
+      </div>
+      <img class="mascot" src="img/2020/minion-menu.webp" alt="" width="370" height="378" loading="lazy">
+    </div>
+  </section>
 </main>
+
+<footer>
+  <img src="img/2020/logo.webp" alt="Minion Rush" width="600" height="82">
+  <div class="links">
+    <a href="https://discord.gg/8bqYUns56b">Discord</a>
+    <a href="https://github.com/dotxr/Minion-Rush-Revival">GitHub</a>
+    <a href="https://github.com/dotxr/Minion-Rush-Revival/releases">Releases</a>
+  </div>
+  <p>Unofficial, non-commercial fan project. Not affiliated with or endorsed by Gameloft, Universal, Illumination or NBCUniversal. Minion Rush and Despicable Me belong to their owners.</p>
+</footer>
+
+<script>
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// preloader
+const t0 = performance.now();
+addEventListener("load", () => setTimeout(() => $(".pre").classList.add("done"), Math.max(0, (still ? 0 : 700) - (performance.now() - t0))));
+setTimeout(() => $(".pre").classList.add("done"), 4000);
+
+// header
+const header = $("header"), nav = $("nav"), menu = $(".menu-btn");
+const solid = () => header.classList.toggle("solid", scrollY > 40);
+addEventListener("scroll", solid, { passive: true }); solid();
+menu.onclick = () => menu.setAttribute("aria-expanded", nav.classList.toggle("open"));
+$$("a", nav).forEach(a => a.onclick = () => { nav.classList.remove("open"); menu.setAttribute("aria-expanded", false); });
+
+// runners
+const info = $(".runner-info");
+$$(".runner").forEach(b => b.onclick = () => {
+  $$(".runner").forEach(x => x.setAttribute("aria-pressed", x === b));
+  $("h3", info).textContent = $("img", b).alt;
+  $("p", info).textContent = b.dataset.desc;
+});
+$$(".runner:not([aria-pressed])").forEach(b => b.setAttribute("aria-pressed", false));
+
+// costumes on an arc
+const costumes = ["astronaut", "baby", "bee-do", "cleopatra", "cupid", "dad", "firefighter", "lucy", "magician", "maid", "mom", "ninja", "partier", "princess", "prisoner", "referee", "singer", "spy", "tortilla"];
+const track = $(".arc-track");
+track.innerHTML = costumes.map(c => `<div class="cos"><img src="img/2020/cos/${c}.webp" alt="" loading="lazy"><span>${c.replace(/(^|-)(\w)/g, (m, d, l) => d + l.toUpperCase())}</span></div>`).join("");
+const cards = $$(".cos", track);
+const bend = () => {
+  const mid = track.scrollLeft + track.clientWidth / 2, half = track.clientWidth / 2;
+  for (const c of cards) {
+    const d = Math.max(-1.3, Math.min(1.3, (c.offsetLeft + c.offsetWidth / 2 - mid) / half));
+    c.style.setProperty("--y", `${d * d * 110}px`);
+    c.style.setProperty("--s", 1.15 - Math.abs(d) * .3);
+    c.style.setProperty("--o", 1 - Math.abs(d) * .6);
+  }
+};
+track.addEventListener("scroll", () => requestAnimationFrame(bend), { passive: true });
+addEventListener("resize", bend);
+track.scrollLeft = cards[5].offsetLeft - track.clientWidth / 2 + cards[5].offsetWidth / 2; bend();
+$$(".arc-nav .round").forEach(b => b.onclick = () => track.scrollBy({ left: b.dataset.dir * cards[0].offsetWidth * 2, behavior: still ? "auto" : "smooth" }));
+let drag = null;
+track.onpointerdown = e => { if (e.pointerType === "mouse") drag = { x: e.clientX, s: track.scrollLeft }; };
+addEventListener("pointermove", e => { if (drag) { track.style.scrollSnapType = "none"; track.scrollLeft = drag.s - (e.clientX - drag.x); } });
+addEventListener("pointerup", () => { if (drag) { drag = null; track.style.scrollSnapType = ""; } });
+
+// locations: phone frame with a fanned deck behind it
+const locs = [
+  ["Prison", "The Prison", "Make a break for freedom in this max security lockup."],
+  ["Grus_Lab", "Gru's Lab", "The Minion’s home turf, full of high-tech hazards."],
+  ["Residential_Area", "Residential Area", "A quaint little town with branching paths."],
+  ["Downtown", "Downtown", "Hustle to dodge the bustle of these busy streets."],
+  ["Minion_Beach", "Minion Beach", "Sandy shores, a calming breeze, and tropical traps!"],
+  ["El_Macho_Lair", "El Macho Lair", "Evil Minions guard this ancient temple from raiders."],
+  ["Anti-Villain_League", "Anti-Villain League", "A massive sub loaded with sonar, missiles & more."],
+  ["The_Mall", "The Mall", "Shop till you drop in this sprawling set of stores."],
+  ["The_Pyramids", "The Pyramids", "Mummies & sandstorms sweep across this desert trek."],
+  ["The_Arctic_Base", "The Arctic Base", "Slide through an icy compound full of snowmen & sleds."],
+  ["Eduardos_House", "Eduardo's House", "Balloons, fountains & music make every day a fiesta!"],
+  ["Pier_12", "Pier 12", "A beautiful moonlight romp along the boardwalk."],
+  ["Super_Silly_Fun_Land", "Super Silly Fun Land", "Take the ride of your life in this most amusing park."],
+  ["The_Volcano", "The Volcano", "Get fired up for a tropical trip through the jungle."],
+  ["Minion_Park", "Minion Park", "These idyllic fields are no picnic for the quick!"],
+  ["Vectors_Fortress", "Vector's Fortress", "Gru’s rival keeps a pristine lab full of experimental dangers."],
+  ["Bratts_Lair", "Bratt's Lair", "This island fort puts Minions in puzzling predicaments."],
+];
+const view = $(".loc-view"), frame = $(".loc-frame"), ltext = $(".loc-text");
+const decks = locs.map(([f, n]) => { const d = document.createElement("div"); d.className = "loc-card"; d.innerHTML = `<img src="img/2020/loc/${f}.webp" alt="${n}" loading="lazy">`; view.insertBefore(d, frame); return d; });
+let cur = 0;
+const showLoc = () => {
+  const n = locs.length, w = view.clientWidth;
+  decks.forEach((d, i) => {
+    let k = ((i - cur) % n + n) % n; if (k > n / 2) k -= n;
+    const a = Math.abs(k), side = Math.sign(k);
+    const F = frame.offsetWidth, x = -.009 * F + (k === 0 ? 0 : side * (d.offsetWidth * .72 + (a - 1) * Math.min(52, w / 16)));
+    d.style.transform = `translate(-50%, -50%) translate(${x}px, ${-.054 * F}px) rotateY(${-side * Math.min(a, 1) * 38}deg) scale(${k === 0 ? 1.02 : .86})`;
+    d.style.zIndex = k === 0 ? 10 : 9 - a;
+    d.style.opacity = a > 4 ? 0 : 1;
+    d.setAttribute("aria-hidden", k !== 0);
+  });
+  $("h3", ltext).textContent = locs[cur][1];
+  $("p", ltext).textContent = locs[cur][2];
+};
+$$(".loc-stage .round").forEach(b => b.onclick = () => { cur = (cur + +b.dataset.dir + locs.length) % locs.length; showLoc(); });
+addEventListener("resize", showLoc); showLoc();
+
+// screenshot tabs
+$$(".tab").forEach(t => t.onclick = () => {
+  $$(".tab").forEach(x => { x.setAttribute("aria-selected", x === t); $("#" + x.getAttribute("aria-controls")).hidden = x !== t; });
+});
+</script>
 </body>
 </html>
