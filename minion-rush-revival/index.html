@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minion Rush Revival</title>
+<meta name="description" content="Keep playing Minion Rush after the shutdown. Every major version, running on our own server.">
+<style>
+  :root { --bg: #14163a; --card: #1f2356; --text: #f4f4fb; --muted: #b8bbe0; --yellow: #ffd23f; --blue: #4a7dff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 900px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { color: var(--yellow); font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 8px; }
+  h2 { margin: 40px 0 12px; }
+  h3 { margin: 24px 0 8px; color: var(--muted); font-weight: 600; }
+  p { margin: 0 0 12px; }
+  a { color: var(--yellow); }
+  .lead { color: var(--muted); font-size: 1.1rem; }
+  .btn { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; padding: 10px 18px; border-radius: 10px; font-weight: 600; margin: 8px 8px 0 0; }
+  .btn.discord { background: #5865f2; }
+  .card { background: var(--card); border-radius: 14px; padding: 16px 20px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #2f3470; vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { font-weight: 600; }
+  .shots { display: flex; gap: 12px; flex-wrap: wrap; }
+  .shots img { width: calc(33.333% - 8px); min-width: 140px; flex: 1 1 140px; border-radius: 10px; }
+  ol { padding-left: 20px; margin: 0; }
+  li { margin-bottom: 6px; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Minion Rush Revival</h1>
+  <p class="lead">Minion Rush is shutting down. These builds run on our own server, so you can keep playing. Every version keeps its own progress and leaderboards.</p>
+  <a class="btn discord" href="https://discord.gg/8bqYUns56b">Join our Discord</a>
+  <a class="btn" href="https://github.com/dotxr/Minion-Rush-Revival">GitHub</a>
+
+  <h2>Download</h2>
+  <div class="card">
+    <table>
+      <tr><th>Version</th><th>What it is</th><th>Android</th><th>iPhone / iPad</th></tr>
+      <tr><td><b>13.3.0</b></td><td>The final Unity version</td>
+        <td><a href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/13.3.0/MinionRushRevived-13.3.0.apk">APK</a></td>
+        <td><a href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/13.3.0/MinionRushRevived-13.3.0.ipa">IPA</a></td></tr>
+      <tr><td><b>9.7.1b</b></td><td>The original game, before the Unity remake</td>
+        <td><a href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/9.7.1b/MinionRushRevived-9.7.1b.apk">APK</a></td><td></td></tr>
+      <tr><td><b>9.6.1b</b></td><td>The original game, before the Unity remake</td><td></td>
+        <td><a href="https://github.com/dotxr/Minion-Rush-Revival/releases/download/9.6.1b/MinionRushRevived-9.6.1b.ipa">IPA</a></td></tr>
+    </table>
+  </div>
+
+  <h2>Screenshots</h2>
+  <h3>13.3.0</h3>
+  <div class="shots">
+    <img src="img/screenshot2.png" alt="13.3.0 main menu">
+    <img src="img/screenshot.png" alt="13.3.0 profile">
+  </div>
+  <h3>9.7.1b</h3>
+  <div class="shots">
+    <img src="img/legacy-9.7.1b-menu.png" alt="9.7.1b main menu">
+    <img src="img/legacy-9.7.1b-run.png" alt="9.7.1b run">
+  </div>
+  <h3>9.6.1b</h3>
+  <div class="shots">
+    <img src="img/legacy-9.6.1b-menu.png" alt="9.6.1b main menu">
+    <img src="img/legacy-9.6.1b-run.png" alt="9.6.1b run">
+  </div>
+
+  <h2>How to install</h2>
+  <h3>Android</h3>
+  <ol>
+    <li>Download the APK for the version you want on your phone.</li>
+    <li>Open it, allow installing from that app when asked, then tap <b>Install</b>.</li>
+  </ol>
+  <h3>iPhone / iPad</h3>
+  <ol>
+    <li>Install <a href="https://sideloadly.io">Sideloadly</a> on your computer.</li>
+    <li>Plug in your phone, drag the IPA into Sideloadly, sign in with your Apple ID and press <b>Start</b>.</li>
+    <li>On your phone, trust your Apple ID in <b>Settings &gt; General &gt; VPN &amp; Device Management</b>.</li>
+    <li>On iOS 16 or newer, turn on <b>Settings &gt; Privacy &amp; Security &gt; Developer Mode</b>.</li>
+  </ol>
+  <p style="margin-top:12px">With a free Apple ID the app stops opening after 7 days. Just sideload it again; your save won't be lost.</p>
+
+  <footer>Unofficial, non-commercial fan project. Not affiliated with or endorsed by Gameloft, Universal, Illumination or NBCUniversal. Minion Rush and Despicable Me belong to their owners.</footer>
+</main>
+</body>
+</html>
