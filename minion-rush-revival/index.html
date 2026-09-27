@@ -25,7 +25,6 @@
   a { color: inherit; }
   :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 6px; }
 
-  /* preloader: the 2020 goggles */
   .pre { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: #f2c21b url(img/2020/pre-bg.webp) center/cover; transition: opacity .5s, visibility .5s; }
   .pre::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 4%; background: #111; transform: translateY(-50%); }
   .pre.done { opacity: 0; visibility: hidden; }
@@ -35,7 +34,6 @@
   .lens i { position: relative; width: 30%; aspect-ratio: 1; background: url(img/2020/pre-eye.webp) center/contain no-repeat; animation: look 3s ease-in-out infinite; }
   @keyframes look { 20% { transform: translate(40%, 25%); } 45% { transform: translate(-30%, 0); } 70% { transform: translate(-35%, 30%); } 85% { transform: translate(45%, -10%); } }
 
-  /* header */
   header { position: fixed; inset: 0 0 auto; z-index: 100; display: flex; align-items: center; gap: 24px; padding: 12px clamp(16px, 4vw, 48px); transition: background .25s, box-shadow .25s; }
   header.solid { background: rgba(6, 88, 181, .96); box-shadow: 0 6px 24px rgba(0, 30, 80, .25); }
   .brand img { height: clamp(22px, 3vw, 30px); width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,.35)); }
@@ -53,7 +51,6 @@
   .menu-btn { display: none; margin-left: auto; background: none; border: 0; color: #fff; padding: 6px; cursor: pointer; }
   .menu-btn svg { width: 28px; height: 28px; }
 
-  /* shared section type: the 2020 two-line heading */
   section { position: relative; padding: clamp(72px, 10vw, 128px) 16px; }
   .wrap { max-width: 1120px; margin: 0 auto; }
   .head { text-align: center; margin: 0 auto 40px; max-width: 640px; }
@@ -64,7 +61,6 @@
   .on-color, .on-color .head { color: #fff; }
   .on-color .head h2 { text-shadow: 0 3px 0 rgba(0, 0, 0, .12); }
 
-  /* hero */
   .hero { min-height: min(100svh, 900px); padding: 0; display: flex; align-items: flex-end; background: #2a8fd8 url(img/2020/hero.webp) 62% center/cover; color: #fff; }
   .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4, 40, 90, .78) 0%, rgba(4, 40, 90, .35) 42%, rgba(4, 40, 90, 0) 62%), linear-gradient(0deg, rgba(4, 40, 90, .55), transparent 40%); }
   .hero .wrap { position: relative; z-index: 1; width: 100%; padding: 120px clamp(0px, 2vw, 24px) clamp(56px, 9vh, 96px); }
@@ -73,7 +69,6 @@
   .hero p { max-width: 42ch; margin: 0 0 28px; font-size: 1.05rem; text-shadow: 0 2px 6px rgba(0,0,0,.4); }
   .hero .ctas { display: flex; flex-wrap: wrap; gap: 16px; }
 
-  /* run with the minions */
   .run { background: var(--orange) url(img/2020/run-minion-bg.webp) center/cover; overflow: hidden; }
   .run .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 72px); align-items: center; }
   .run .phone { justify-self: center; width: min(330px, 70vw); filter: drop-shadow(0 30px 40px rgba(120, 40, 0, .45)); transform: rotate(-4deg); }
@@ -83,30 +78,34 @@
   .facts li img { width: 44px; height: 44px; object-fit: contain; }
   .facts b { display: block; font-weight: 900; text-transform: uppercase; font-size: .95rem; }
 
-  /* download */
   .download { background: var(--sky) url(img/2020/newsletter-bg.webp) center/cover; }
-  .installer { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); background: #fff; color: var(--ink); border-radius: 30px; overflow: hidden; box-shadow: 0 10px 0 #0b56a8, 0 30px 50px rgba(0, 40, 100, .28); max-width: 980px; margin: 0 auto; }
-  .pick { background: linear-gradient(160deg, #eaf3ff, #d6e7ff); padding: 34px 30px; display: flex; flex-direction: column; gap: 20px; }
-  .field span { display: block; font-weight: 900; text-transform: uppercase; font-size: .78rem; letter-spacing: .04em; color: var(--blue); margin: 0 0 8px 4px; }
-  .field select { width: 100%; appearance: none; -webkit-appearance: none; border: 3px solid var(--blue); border-radius: 18px; padding: 14px 48px 14px 18px; font: 900 1.15rem Montserrat, sans-serif; color: var(--blue); cursor: pointer; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230658b5' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center / 20px; box-shadow: 0 4px 0 #b9cde8; }
-  .field select:disabled { opacity: .6; cursor: default; }
-  .blurb { margin: 4px 4px 0; font-size: .95rem; }
-  .sheet { padding: 34px 32px 30px; display: flex; flex-direction: column; }
-  .sheet-head { display: flex; align-items: center; gap: 14px; }
-  .sheet h3 { margin: 0; font-size: 2.6rem; font-weight: 900; color: var(--blue); line-height: 1; }
-  .sheet .tag { background: var(--orange); color: #fff; font-weight: 900; font-size: .72rem; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
-  .sheet .era { margin: 8px 0 18px; font-weight: 700; color: var(--orange-2); text-transform: uppercase; font-size: .8rem; letter-spacing: .03em; }
-  .specs { margin: 0 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #dbe7f7; border: 1px solid #dbe7f7; border-radius: 16px; overflow: hidden; }
-  .specs div { background: #fff; padding: 11px 14px; min-width: 0; }
-  .specs .wide { grid-column: 1 / -1; }
-  .specs dt { font-size: .7rem; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: #6b86ad; }
-  .specs dd { margin: 2px 0 0; font-weight: 700; font-size: .92rem; overflow-wrap: anywhere; }
-  .specs code { font: 600 .82rem ui-monospace, Menlo, monospace; color: var(--ink); }
-  .specs button { border: 0; background: none; padding: 0 0 0 6px; font: 900 .72rem Montserrat, sans-serif; color: var(--orange-2); text-transform: uppercase; cursor: pointer; }
-  .heads { margin: 0 0 18px; padding: 12px 16px; border-radius: 14px; background: #fff4df; color: #8a4b00; font-size: .88rem; font-weight: 600; }
-  .sheet .get { align-self: flex-start; font-size: 1rem; padding: 16px 30px; }
+  .tickets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2.4vw, 26px); max-width: 980px; margin: 0 auto; padding-top: 70px; }
+  .ticket { position: relative; border: 0; border-radius: 26px; background: #fff; color: var(--blue); padding: 88px 16px 20px; text-align: center; cursor: pointer; font: inherit; box-shadow: 0 7px 0 #0b56a8, 0 18px 30px rgba(0, 40, 100, .25); transition: transform .15s, box-shadow .15s, background .2s; }
+  .ticket img { position: absolute; left: 50%; bottom: calc(100% - 84px); width: 118px; height: 128px; object-fit: contain; transform: translateX(-50%); filter: drop-shadow(0 10px 8px rgba(0, 30, 80, .3)); transition: transform .25s cubic-bezier(.3, 1.6, .5, 1); }
+  .ticket b { display: block; font-size: clamp(1.9rem, 4vw, 2.7rem); font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+  .ticket span { display: block; margin-top: 8px; font-weight: 900; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; color: var(--orange-2); }
+  .ticket:hover { transform: translateY(-3px); }
+  .ticket:hover img { transform: translateX(-50%) translateY(-6px) rotate(-4deg); }
+  .ticket[aria-pressed="true"] { background: var(--yellow); color: var(--ink); box-shadow: 0 7px 0 #c28a00, 0 18px 30px rgba(120, 80, 0, .3); }
+  .ticket[aria-pressed="true"] span { color: var(--ink); }
+  .shelf { max-width: 980px; margin: 34px auto 0; background: #fff; color: var(--ink); border-radius: 28px; padding: clamp(18px, 3vw, 30px); box-shadow: 0 10px 0 #0b56a8, 0 30px 50px rgba(0, 40, 100, .28); }
+  .shelf > p { margin: 0 0 16px; font-weight: 600; }
+  .build { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 6px 18px; align-items: center; padding: 18px 4px; border-top: 3px dashed #dbe7f7; }
+  .build:first-of-type { border-top: 0; }
+  .build .icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--blue); color: #fff; }
+  .build .icon svg { width: 28px; height: 28px; fill: currentColor; }
+  .build h3 { margin: 0; font-size: 1.15rem; font-weight: 900; text-transform: uppercase; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .build p { margin: 2px 0 0; font-size: .9rem; }
+  .build small { display: block; margin-top: 4px; font-size: .76rem; font-weight: 700; color: #6b86ad; }
+  .badge { font-size: .66rem; letter-spacing: .05em; padding: 4px 10px; border-radius: 999px; color: #fff; background: var(--orange); }
+  .badge.experimental { background: var(--gold); color: var(--ink); }
+  .badge.deprecated { background: #8fa3bf; }
+  .build.deprecated .icon { background: #8fa3bf; }
+  .build.deprecated h3, .build.deprecated p { color: #5f7392; }
+  .build .pill { white-space: nowrap; }
+  .build.deprecated .pill { background: #fff; color: #5f7392; box-shadow: 0 5px 0 #c9d6e8; }
+  .build .prog { grid-column: 2 / -1; }
   .get:disabled { opacity: .45; cursor: default; transform: none; }
-  .prog { margin-top: 18px; }
   .bar { height: 14px; border-radius: 999px; background: #e3edfa; overflow: hidden; box-shadow: inset 0 2px 0 rgba(0, 40, 100, .12); }
   .bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: repeating-linear-gradient(135deg, var(--gold) 0 12px, var(--orange) 12px 24px); background-size: 34px 34px; animation: stripes 1s linear infinite; transition: width .25s; }
   @keyframes stripes { to { background-position: 34px 0; } }
@@ -117,7 +116,6 @@
   .stat button { border: 0; background: none; padding: 0; font: inherit; color: var(--orange-2); text-decoration: underline; cursor: pointer; }
   .note { text-align: center; margin: 44px auto 0; max-width: 600px; font-size: .95rem; }
 
-  /* runners */
   .runners { background: var(--blue) url(img/2020/main-minions-bg.webp) center/cover; overflow: hidden; }
   .stage { max-width: 900px; margin: 0 auto; display: flex; justify-content: center; align-items: flex-end; gap: clamp(4px, 2vw, 28px); min-height: clamp(220px, 34vw, 380px); }
   .runner { background: none; border: 0; padding: 0; cursor: pointer; flex: 0 1 22%; transition: flex-basis .35s cubic-bezier(.3, 1.4, .5, 1), filter .3s; filter: saturate(.6) brightness(.85); }
@@ -127,7 +125,6 @@
   .runner-info h3 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; text-transform: uppercase; }
   .runner-info p { margin: 6px auto 0; max-width: 46ch; }
 
-  /* costumes: the 2020 path slider */
   .costumes { background: var(--orange-2) url(img/2020/costume-bg.webp) center/cover; overflow: hidden; padding-bottom: clamp(48px, 7vw, 88px); }
   .arc { position: relative; }
   .arc-track { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 30px calc(50vw - 80px) 150px; scrollbar-width: none; cursor: grab; }
@@ -141,7 +138,6 @@
   .round:hover { background: #fff; color: var(--orange-2); }
   .round svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* locations */
   .locations { overflow: hidden; }
   .locations .head { color: var(--orange-2); }
   .loc-stage { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; align-items: center; gap: 12px; max-width: 900px; margin: 0 auto; }
@@ -155,7 +151,6 @@
   .loc-text h3 { margin: 0; font-size: 1.7rem; font-weight: 900; text-transform: uppercase; }
   .loc-text p { margin: 4px 0 0; }
 
-  /* screenshots */
   .shots { background: var(--paper); }
   .shots .head { color: var(--blue); }
   .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 36px; flex-wrap: wrap; }
@@ -167,7 +162,6 @@
   .panel img { width: 100%; border-radius: 22px; border: 6px solid #fff; box-shadow: 0 18px 40px rgba(6, 88, 181, .22); }
   .panel figcaption { text-align: center; margin-top: 12px; font-weight: 700; color: var(--blue-2); font-size: .9rem; }
 
-  /* install */
   .install .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 64px); align-items: center; }
   .install .faq-minion { width: min(360px, 70vw); justify-self: center; }
   .install .head { text-align: left; margin: 0 0 24px; color: var(--blue); }
@@ -183,7 +177,6 @@
   details p { margin: 0 0 20px; color: var(--ink); font-size: .92rem; }
   details a { color: var(--blue); font-weight: 700; }
 
-  /* community */
   .community { background: var(--blue) url(img/2020/videos-bg.webp) center/cover; overflow: hidden; }
   .community .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 32px; align-items: center; }
   .community .head { text-align: left; margin: 0 0 30px; }
@@ -203,8 +196,12 @@
     .menu-btn { display: block; }
     header .pill { display: none; }
     header:has(nav.open) { background: var(--blue); }
-    .installer { grid-template-columns: 1fr; }
-    .pick, .sheet { padding: 26px 20px; }
+    .tickets { gap: 10px; padding-top: 56px; }
+    .ticket { padding: 70px 8px 16px; border-radius: 20px; }
+    .ticket img { width: 84px; height: 92px; bottom: calc(100% - 64px); }
+    .build { grid-template-columns: 44px minmax(0, 1fr); }
+    .build .icon { width: 44px; height: 44px; border-radius: 13px; }
+    .build .pill { grid-column: 1 / -1; justify-self: stretch; justify-content: center; }
     .run .wrap, .install .wrap, .community .wrap { grid-template-columns: 1fr; }
     .run .phone { width: min(240px, 60vw); order: 2; }
     .install .faq-minion, .community .mascot { width: 200px; order: -1; }
@@ -270,7 +267,7 @@
         <ul class="facts">
           <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Three versions</b>Play the final 13.3.0 or go back to 9.7.1b and 9.6.1b, the classic game from before the remake.</div></li>
           <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Separate progress</b>Each version keeps its own save, so progress in one doesn't touch the others.</div></li>
-          <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Real leaderboards</b>Race against the other players on the revival server, not bots.</div></li>
+          <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Play offline</b>The classic versions carry their own server, so they run without internet, and everything in the shop costs 1.</div></li>
         </ul>
       </div>
     </div>
@@ -280,23 +277,10 @@
     <div class="wrap">
       <div class="head">
         <h2><small>Pick your</small><span>version</span></h2>
-        <p>Every download already points at our server. Install it and play.</p>
+        <p>13.3.0 plays on our server. The classic versions now come with the server built into the app, so they run without internet.</p>
       </div>
-      <div class="installer">
-        <div class="pick">
-          <label class="field"><span>Version</span><select id="i-ver"></select></label>
-          <label class="field"><span>Device</span><select id="i-plat"></select></label>
-          <p class="blurb" id="i-blurb"></p>
-        </div>
-        <div class="sheet">
-          <div class="sheet-head"><h3 id="i-title"></h3><span class="tag" id="i-tag" hidden>Latest</span></div>
-          <div class="era" id="i-era"></div>
-          <dl class="specs" id="i-specs"><div><dt>Loading</dt><dd>Fetching the build list…</dd></div></dl>
-          <p class="heads" id="i-note" hidden></p>
-          <button class="pill orange get" id="i-get" disabled>Download</button>
-          <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
-        </div>
-      </div>
+      <div class="tickets" role="group" aria-label="Version"></div>
+      <div class="shelf" aria-live="polite"><p>Loading the build list…</p></div>
       <p class="note">Downloads come in parts from GitHub and are checked and put back together in your browser, so keep this tab open until it finishes. Not sure how to install an APK or IPA? See <a href="#install"><b>how to install</b></a> below.</p>
     </div>
   </section>
@@ -428,19 +412,16 @@
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// preloader
 const t0 = performance.now();
 addEventListener("load", () => setTimeout(() => $(".pre").classList.add("done"), Math.max(0, (still ? 0 : 700) - (performance.now() - t0))));
 setTimeout(() => $(".pre").classList.add("done"), 4000);
 
-// header
 const header = $("header"), nav = $("nav"), menu = $(".menu-btn");
 const solid = () => header.classList.toggle("solid", scrollY > 40);
 addEventListener("scroll", solid, { passive: true }); solid();
 menu.onclick = () => menu.setAttribute("aria-expanded", nav.classList.toggle("open"));
 $$("a", nav).forEach(a => a.onclick = () => { nav.classList.remove("open"); menu.setAttribute("aria-expanded", false); });
 
-// runners
 const info = $(".runner-info");
 $$(".runner").forEach(b => b.onclick = () => {
   $$(".runner").forEach(x => x.setAttribute("aria-pressed", x === b));
@@ -449,7 +430,6 @@ $$(".runner").forEach(b => b.onclick = () => {
 });
 $$(".runner:not([aria-pressed])").forEach(b => b.setAttribute("aria-pressed", false));
 
-// costumes on an arc
 const costumes = ["astronaut", "baby", "bee-do", "cleopatra", "cupid", "dad", "firefighter", "lucy", "magician", "maid", "mom", "ninja", "partier", "princess", "prisoner", "referee", "singer", "spy", "tortilla"];
 const track = $(".arc-track");
 track.innerHTML = costumes.map(c => `<div class="cos"><img src="img/2020/cos/${c}.webp" alt="" loading="lazy"><span>${c.replace(/(^|-)(\w)/g, (m, d, l) => d + l.toUpperCase())}</span></div>`).join("");
@@ -472,7 +452,6 @@ track.onpointerdown = e => { if (e.pointerType === "mouse") drag = { x: e.client
 addEventListener("pointermove", e => { if (drag) { track.style.scrollSnapType = "none"; track.scrollLeft = drag.s - (e.clientX - drag.x); } });
 addEventListener("pointerup", () => { if (drag) { drag = null; track.style.scrollSnapType = ""; } });
 
-// locations: phone frame with a fanned deck behind it
 const locs = [
   ["Prison", "The Prison", "Make a break for freedom in this max security lockup."],
   ["Grus_Lab", "Gru's Lab", "The Minion’s home turf, full of high-tech hazards."],
@@ -512,12 +491,10 @@ const showLoc = () => {
 $$(".loc-stage .round").forEach(b => b.onclick = () => { cur = (cur + +b.dataset.dir + locs.length) % locs.length; showLoc(); });
 addEventListener("resize", showLoc); showLoc();
 
-// screenshot tabs
 $$(".tab").forEach(t => t.onclick = () => {
   $$(".tab").forEach(x => { x.setAttribute("aria-selected", x === t); $("#" + x.getAttribute("aria-controls")).hidden = x !== t; });
 });
 
-// downloads: parts from the builds repo, checked and put back together here
 const RAW = "https://raw.githubusercontent.com/dotxr/Minion-Rush-Revival-Builds/main/";
 const MB = n => (n / 1048576).toFixed(n < 1048576 * 10 ? 1 : 0) + " MB";
 const hex = b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("");
@@ -541,61 +518,60 @@ async function part(p, onBytes, signal) {
 }
 
 const VERS = {
-  "13.3.0": { era: "Unity remake", tag: true, blurb: "The final version of Minion Rush, with the Season Pass, events, collections and the full costume lineup." },
-  "9.7.1b": { era: "Classic", blurb: "The original game from before the Unity remake, with the classic map, missions and Prize Pods." },
-  "9.6.1b": { era: "Classic", blurb: "An earlier classic build, with its own save and leaderboards." },
+  "13.3.0": { art: "minion-dave.webp", era: "Final", blurb: "The last Minion Rush, with the Season Pass, events, collections and the full costume lineup." },
+  "9.7.1b": { art: "cos/astronaut.webp", era: "Classic", blurb: "The original game from before the Unity remake: the classic map, missions and Prize Pods." },
+  "9.6.1b": { art: "cos/ninja.webp", era: "Classic", blurb: "An earlier classic build, with its own save." },
 };
-const NOTES = { "9.7.1b-android": "Updating an older 9.7.1b install? Clear the app's data once after installing so it downloads the full game data." };
 const PLAT = { android: "Android", ios: "iPhone / iPad" };
-const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const when = d => { const [y, m, day] = d.split("-").map(Number); return (day ? `${MONTHS[m - 1]} ${day}, ` : `${MONTHS[m - 1]} `) + y; };
+const ICON = {
+  android: '<svg viewBox="0 0 24 24"><path d="M17.6 9.5 19.4 6.4a.4.4 0 1 0-.7-.4l-1.8 3.1a11 11 0 0 0-9.8 0L5.3 6a.4.4 0 1 0-.7.4l1.8 3.1A10.3 10.3 0 0 0 1 18h22a10.3 10.3 0 0 0-5.4-8.5ZM7 15.3a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>',
+  ios: '<svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9a4.8 4.8 0 0 0-3.8-2c-1.6-.2-3.1.9-3.9.9s-2-.9-3.4-.9a5 5 0 0 0-4.2 2.6c-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.6s1.7-.8 3.3-.8 2 .8 3.4.8 2.2-1.3 3-2.5a10 10 0 0 0 1.4-2.8 4.4 4.4 0 0 1-2.4-4.2ZM13.9 5a4.4 4.4 0 0 0 1-3.2 4.5 4.5 0 0 0-2.9 1.5 4.2 4.2 0 0 0-1.1 3.1A3.7 3.7 0 0 0 13.9 5Z"/></svg>',
+};
+const KIND = {
+  stable: ["", "Plays on the revival server: events, leaderboards and the store."],
+  experimental: ["Offline", "The server runs inside the app, so it plays without internet and your save stays on your device. Everything in the shop costs 1."],
+  deprecated: ["Online", "Connects to our server and isn't updated anymore. Get the offline build instead; it installs over this one."],
+};
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
 (async () => {
-  const sel = { ver: $("#i-ver"), plat: $("#i-plat") }, get = $("#i-get"), specs = $("#i-specs");
-  const prog = $(".sheet .prog"), bar = $(".bar i", prog), [left, right] = $$(".stat span", prog);
-  const status = (l, r = "") => { left.innerHTML = l; right.textContent = r; };
+  const tickets = $(".tickets"), shelf = $(".shelf");
   let m;
-  try { m = await builds; } catch { specs.innerHTML = "<div class=wide><dt>Couldn't load the build list</dt><dd>Check your connection and reload the page.</dd></div>"; return; }
-  const versions = Object.keys(VERS).filter(v => Object.values(m).some(b => b.version === v));
-  sel.ver.innerHTML = versions.map(v => `<option value="${v}">${v} · ${VERS[v].tag ? "Latest" : VERS[v].era}</option>`).join("");
+  try { m = await builds; } catch { shelf.innerHTML = "<p>Couldn't load the build list. Check your connection and reload the page.</p>"; return; }
   const prefer = /iPhone|iPad|iPod|Macintosh.*Mobile/.test(navigator.userAgent) ? "ios" : "android";
-  const current = () => m[`${sel.ver.value}-${sel.plat.value}`];
+  const order = b => (b.platform === prefer ? 0 : 2) + (b.status === "deprecated" ? 4 : 0);
+  const versions = Object.keys(VERS).filter(v => Object.values(m).some(b => b.version === v));
+  tickets.innerHTML = versions.map(v => `<button class="ticket" type="button" data-v="${v}" aria-pressed="false"><img src="img/2020/${VERS[v].art}" alt="" loading="lazy"><b>${v}</b><span>${VERS[v].era}</span></button>`).join("");
+  let busy = false;
 
-  const showBuild = () => {
-    const b = current(), v = VERS[b.version];
-    $("#i-title").textContent = b.version; $("#i-tag").hidden = !v.tag;
-    $("#i-era").textContent = `${v.era} · ${PLAT[b.platform]}`; $("#i-blurb").textContent = v.blurb;
-    const row = (k, val, wide) => `<div${wide ? " class=wide" : ""}><dt>${k}</dt><dd>${val}</dd></div>`;
-    specs.innerHTML = row("Released", when(b.date)) + row("Installs as", esc(b.app))
-      + row(b.platform === "ios" ? "Bundle ID" : "Package", `<code>${esc(b.id)}</code>`) + row("Requires", esc(b.min_os) + " or newer")
-      + row(b.platform === "ios" ? "Runs on" : "CPU", esc(b.archs.join(", "))) + row("Size", `${MB(b.size)} in ${b.parts.length} parts`)
-      + row("File", `<code>${esc(b.name)}</code>`, true)
-      + row("SHA-256", `<code>${b.sha256.slice(0, 16)}…</code><button type="button">Copy</button>`, true);
-    $("button", specs).onclick = e => navigator.clipboard?.writeText(b.sha256).then(() => { e.target.textContent = "Copied"; });
-    const note = NOTES[`${b.version}-${b.platform}`]; $("#i-note").hidden = !note; $("#i-note").textContent = note || "";
-    get.textContent = `Download ${b.platform === "ios" ? "IPA" : "APK"} · ${MB(b.size)}`; get.disabled = false;
-    prog.hidden = true;
+  const show = v => {
+    $$(".ticket", tickets).forEach(t => t.setAttribute("aria-pressed", t.dataset.v === v));
+    const list = Object.values(m).filter(b => b.version === v).sort((a, b) => order(a) - order(b));
+    shelf.innerHTML = `<p>${esc(VERS[v].blurb)}</p>` + list.map(b => {
+      const st = b.status || "stable", [kind, text] = KIND[st];
+      return `<div class="build ${st}" data-name="${esc(b.name)}">
+        <div class="icon">${ICON[b.platform]}</div>
+        <div><h3>${PLAT[b.platform]}${kind ? " " + kind : ""}${st !== "stable" ? ` <span class="badge ${st}">${st}</span>` : ""}</h3><p>${text}</p><small>${esc(b.min_os)} or newer, ${MB(b.size)}</small></div>
+        <button class="pill ${st === "deprecated" ? "white" : "orange"} small get" type="button">Download ${b.platform === "ios" ? "IPA" : "APK"}</button>
+        <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
+      </div>`;
+    }).join("");
+    $$(".build", shelf).forEach((row, i) => $(".get", row).onclick = () => download(list[i], row));
+    $$(".get", shelf).forEach(g => g.disabled = busy);
   };
-  const showPlats = () => {
-    const have = Object.keys(PLAT).filter(p => m[`${sel.ver.value}-${p}`]), keep = sel.plat.value || prefer;
-    sel.plat.innerHTML = have.map(p => `<option value="${p}">${PLAT[p]}</option>`).join("");
-    sel.plat.value = have.includes(keep) ? keep : have[0];
-    showBuild();
-  };
-  sel.ver.onchange = showPlats; sel.plat.onchange = showBuild;
-  sel.plat.value = prefer; showPlats();
+  $$(".ticket", tickets).forEach(t => t.onclick = () => !busy && show(t.dataset.v));
+  show(versions[0]);
 
-  let ctl = null;
-  get.onclick = async () => {
-    const b = current();
+  const download = async (b, row) => {
+    const get = $(".get", row), prog = $(".prog", row), bar = $(".bar i", prog), [left, right] = $$(".stat span", prog);
+    const status = (l, r = "") => { left.innerHTML = l; right.textContent = r; };
     let sink = null;
     if (window.showSaveFilePicker) {
       try { sink = await (await showSaveFilePicker({ suggestedName: b.name })).createWritable(); }
       catch (e) { if (e.name === "AbortError") return; }
     }
-    ctl = new AbortController();
-    get.disabled = sel.ver.disabled = sel.plat.disabled = true;
+    const ctl = new AbortController();
+    busy = true; $$(".get", shelf).forEach(g => g.disabled = true);
     prog.hidden = false; prog.className = "prog"; bar.style.width = "0";
     let done = 0, next = 0, written = 0;
     const t0 = performance.now(), out = new Array(b.parts.length), waiters = [];
@@ -603,7 +579,7 @@ const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
       done += n;
       const s = (performance.now() - t0) / 1000;
       bar.style.width = (done / b.size * 100).toFixed(1) + "%";
-      status(`Part ${Math.min(written + 1, b.parts.length)} of ${b.parts.length} · ${s > 1 ? MB(done / s) + "/s" : "starting"} · <button type="button">Cancel</button>`, `${MB(done)} / ${MB(b.size)}`);
+      status(`Part ${Math.min(written + 1, b.parts.length)} of ${b.parts.length}, ${s > 1 ? MB(done / s) + "/s" : "starting"} <button type="button">Cancel</button>`, `${MB(done)} / ${MB(b.size)}`);
       $("button", left).onclick = () => ctl.abort();
     };
     tick(0);
@@ -638,7 +614,7 @@ const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
       prog.classList.add("err");
       status(ctl.signal.aborted && !String(e.message).includes("check") ? "Download cancelled." : `Download failed (${esc(e.message)}). Try again.`);
     } finally {
-      get.disabled = sel.ver.disabled = sel.plat.disabled = false;
+      busy = false; $$(".get", shelf).forEach(g => g.disabled = false);
     }
   };
 })();
