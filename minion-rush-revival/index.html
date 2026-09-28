@@ -533,7 +533,6 @@ const KIND = {
   stable: ["", "Plays on the revival server: events, leaderboards and the store."],
   experimental: ["Offline", "The server runs inside the app, so it plays without internet and your save stays on your device. Everything in the shop costs 1."],
   untested: ["Offline", "Built like the other offline builds but not played through yet. Tell us on Discord if it works."],
-  deprecated: ["Online", "Connects to our server and isn't updated anymore. Get the offline build instead; it installs over this one."],
 };
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
@@ -554,7 +553,7 @@ const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
       const st = b.status || "stable", [kind, text] = KIND[st];
       return `<div class="build ${st}" data-name="${esc(b.name)}">
         <div class="icon">${ICON[b.platform]}</div>
-        <div><h3>${PLAT[b.platform]}${kind ? " " + kind : ""}${st !== "stable" ? ` <span class="badge ${st}">${st}</span>` : ""}</h3><p>${text}</p><small>${esc(b.min_os)} or newer, ${MB(b.size)}</small></div>
+        <div><h3>${PLAT[b.platform]}${kind ? " " + kind : ""}${st !== "stable" ? ` <span class="badge ${st}">${st}</span>` : ""}</h3><p>${text}</p><small>${esc(b.min_os)} or newer, ${MB(b.size)}${b.build ? `<br>Build ${b.build}${b.released ? ", released " + esc(new Date(b.released).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })) : ""}` : ""}</small></div>
         <button class="pill ${st === "deprecated" ? "white" : "orange"} small get" type="button">Download ${b.platform === "ios" ? "IPA" : "APK"}</button>
         <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
       </div>`;
