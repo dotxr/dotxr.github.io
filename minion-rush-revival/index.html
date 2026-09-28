@@ -283,6 +283,17 @@
     </div>
   </section>
 
+  <section class="download on-color" id="editor">
+    <div class="wrap">
+      <div class="head">
+        <h2><small>Save</small><span>editor</span></h2>
+        <p>Change bananas, tokens, costume cards, energy and more in the offline versions. Open the game, then open the editor: it finds the running version and edits its save. Changes show after you restart the game.</p>
+      </div>
+      <div class="shelf editor-shelf" aria-live="polite"></div>
+      <p class="note">Works with the offline builds of 9.7.1b, 9.6.1b, 7.3.0i and 5.7.0h (Android). Get the latest offline build first; older downloads don't include the editor.</p>
+    </div>
+  </section>
+
   <section class="costumes on-color">
     <div class="head">
       <h2><small>Collect all the</small><span>minion costumes</span></h2>
@@ -539,6 +550,12 @@ const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
   };
   $$(".ticket", tickets).forEach(t => t.onclick = () => !busy && show(t.dataset.v));
   show(versions[0]);
+  const ed = Object.values(m).find(b => b.version === "editor"), eshelf = $(".editor-shelf");
+  if (ed) {
+    eshelf.innerHTML = `<div class="build experimental"><div class="icon">${ICON.android}</div><div><h3>Android <span class="badge experimental">experimental</span></h3><p>Supports ${ed.supports.map(esc).join(", ")}.</p><small>${esc(ed.min_os)} or newer, ${MB(ed.size)}</small></div><button class="pill orange small get" type="button">Download APK</button><div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div></div>`;
+    const row = $(".build", eshelf);
+    $(".get", row).onclick = () => download(ed, row);
+  }
 
   const download = async (b, row) => {
     const get = $(".get", row), prog = $(".prog", row), bar = $(".bar i", prog), [left, right] = $$(".stat span", prog);
