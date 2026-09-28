@@ -96,7 +96,7 @@
   .badge { font-size: .66rem; letter-spacing: .05em; padding: 4px 10px; border-radius: 999px; color: #fff; background: var(--orange); }
   .badge.experimental { background: var(--gold); color: var(--ink); }
   .badge.deprecated { background: #8fa3bf; }
-  .badge.untested { background: #e2423b; }
+  .badge.untested, .badge.buggy { background: #e2423b; }
   .build.deprecated .icon { background: #8fa3bf; }
   .build.deprecated h3, .build.deprecated p { color: #5f7392; }
   .build .pill { white-space: nowrap; }
@@ -497,6 +497,7 @@ const VERS = {
   "9.7.1b": { art: "cos/astronaut.webp", era: "Classic", blurb: "The original game from before the Unity remake: the classic map, missions and Prize Pods." },
   "9.6.1b": { art: "cos/ninja.webp", era: "Classic", blurb: "An earlier classic build, with its own save." },
   "7.3.0i": { art: "cos/spy.webp", era: "2020", blurb: "The game as it was in mid 2020." },
+  "5.7.0h": { art: "cos/prisoner.webp", era: "2018", blurb: "The original Minion Rush from 2018, before the 2019 redesign." },
 };
 const PLAT = { android: "Android", ios: "iPhone / iPad" };
 const ICON = {
@@ -506,6 +507,7 @@ const ICON = {
 const KIND = {
   stable: ["", "Plays on the revival server: events, leaderboards and the store."],
   experimental: ["Offline", "The server runs inside the app, so it plays without internet and your save stays on your device. Everything in the shop costs 1."],
+  buggy: ["Offline", "Experimental and buggy: it plays offline, but a \"Could not log in\" popup shows after the tutorial (tap OK) and some features may not work. Report issues on Discord."],
   untested: ["Offline", "Built like the other offline builds but not played through yet. Tell us on Discord if it works."],
 };
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
