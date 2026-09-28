@@ -118,12 +118,7 @@
   .note { text-align: center; margin: 44px auto 0; max-width: 600px; font-size: .95rem; }
 
   .stage { max-width: 900px; margin: 0 auto; display: flex; justify-content: center; align-items: flex-end; gap: clamp(4px, 2vw, 28px); min-height: clamp(220px, 34vw, 380px); }
-  .runner { background: none; border: 0; padding: 0; cursor: pointer; flex: 0 1 22%; transition: flex-basis .35s cubic-bezier(.3, 1.4, .5, 1), filter .3s; filter: saturate(.6) brightness(.85); }
-  .runner img { width: 100%; height: auto; filter: drop-shadow(0 16px 12px rgba(0, 30, 80, .45)); }
   .runner[aria-pressed="true"] { flex-basis: 30%; filter: none; }
-  .runner-info { text-align: center; margin-top: 26px; min-height: 5.5em; }
-  .runner-info h3 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; text-transform: uppercase; }
-  .runner-info p { margin: 6px auto 0; max-width: 46ch; }
 
   .costumes { background: var(--orange-2) url(img/2020/costume-bg.webp) center/cover; overflow: hidden; padding-bottom: clamp(48px, 7vw, 88px); }
   .arc { position: relative; }
@@ -433,13 +428,6 @@ addEventListener("scroll", solid, { passive: true }); solid();
 menu.onclick = () => menu.setAttribute("aria-expanded", nav.classList.toggle("open"));
 $$("a", nav).forEach(a => a.onclick = () => { nav.classList.remove("open"); menu.setAttribute("aria-expanded", false); });
 
-const info = $(".runner-info");
-$$(".runner").forEach(b => b.onclick = () => {
-  $$(".runner").forEach(x => x.setAttribute("aria-pressed", x === b));
-  $("h3", info).textContent = $("img", b).alt;
-  $("p", info).textContent = b.dataset.desc;
-});
-$$(".runner:not([aria-pressed])").forEach(b => b.setAttribute("aria-pressed", false));
 
 const costumes = ["astronaut", "baby", "bee-do", "cleopatra", "cupid", "dad", "firefighter", "lucy", "magician", "maid", "mom", "ninja", "partier", "princess", "prisoner", "referee", "singer", "spy", "tortilla"];
 const track = $(".arc-track");
