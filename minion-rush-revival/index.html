@@ -218,6 +218,28 @@
     .arc-track { padding-inline: calc(50vw - 60px); }
     .panel figure { flex-basis: 50%; }
   }
+  .hero { position: relative; overflow: hidden; }
+  .hero .logo { animation: boing 2.4s ease-in-out infinite; transform-origin: 50% 90%; }
+  .hero .badge26 { position: absolute; right: 4%; top: 18%; width: min(26vw, 230px); animation: wobble 3s ease-in-out infinite; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .35)); }
+  .hero .fly { position: absolute; width: 46px; opacity: .9; animation: fly 7s linear infinite; pointer-events: none; }
+  @keyframes boing { 0%, 100% { transform: scale(1) rotate(0); } 10% { transform: scale(1.08, .92) rotate(-2deg); } 20% { transform: scale(.95, 1.06) rotate(2deg); } 30% { transform: scale(1) rotate(0); } }
+  @keyframes wobble { 0%, 100% { transform: rotate(-6deg) scale(1); } 50% { transform: rotate(6deg) scale(1.07); } }
+  @keyframes fly { from { transform: translateY(110%) rotate(0); top: 100%; } to { transform: translateY(-120%) rotate(720deg); top: -20%; } }
+  .parade { background: var(--yellow); border-block: 6px solid var(--blue); overflow: hidden; padding: 14px 0; }
+  .parade .track { display: flex; gap: 34px; width: max-content; animation: scroll 38s linear infinite; }
+  .parade figure { margin: 0; text-align: center; font: 900 13px/1.2 inherit; color: var(--blue-deep); text-transform: uppercase; }
+  .parade img { height: 110px; display: block; margin: 0 auto 4px; animation: hop 1.1s ease-in-out infinite; }
+  .parade figure:nth-child(2n) img { animation-delay: -.55s; }
+  .parade figure:nth-child(3n) img { animation-duration: .8s; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  @keyframes hop { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-14px) rotate(3deg); } }
+  .sunset { position: relative; background: #2a1450 url(img/brand/sunset.webp) center/cover; min-height: 340px; display: flex; align-items: flex-end; }
+  .sunset .wrap { padding-block: 40px; }
+  .sunset p { max-width: 460px; color: #fff; font-weight: 700; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
+  .credits { display: flex; gap: 28px; justify-content: center; align-items: center; flex-wrap: wrap; margin: 12px 0; }
+  .credits img { height: 38px; width: auto; opacity: .85; transition: transform .2s; }
+  .credits img:hover { transform: rotate(-8deg) scale(1.15); }
+  @media (max-width: 700px) { .hero .badge26 { position: static; display: block; margin: 12px auto 0; width: 170px; } .parade img { height: 80px; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -255,7 +277,11 @@
         <a class="pill white" href="https://discord.gg/8bqYUns56b">Join our Discord</a>
       </div>
     </div>
+    <img class="badge26" src="img/brand/logo-2026.webp" alt="" width="600" height="325">
+    <img class="fly" src="img/2020/banana.webp" alt="" style="left:6%;animation-delay:-0s;animation-duration:7s"><img class="fly" src="img/2020/banana.webp" alt="" style="left:22%;animation-delay:-3s;animation-duration:9s"><img class="fly" src="img/2020/banana.webp" alt="" style="left:48%;animation-delay:-5s;animation-duration:8s"><img class="fly" src="img/2020/banana.webp" alt="" style="left:70%;animation-delay:-1.5s;animation-duration:10s"><img class="fly" src="img/2020/banana.webp" alt="" style="left:90%;animation-delay:-4s;animation-duration:7.5s">
   </section>
+
+  <div class="parade" aria-hidden="true"><div class="track"><figure><img src="img/2020/cos/astronaut.webp" alt="" loading="lazy">astronaut</figure><figure><img src="img/2020/cos/baby.webp" alt="" loading="lazy">baby</figure><figure><img src="img/2020/cos/bee-do.webp" alt="" loading="lazy">bee do</figure><figure><img src="img/2020/cos/cleopatra.webp" alt="" loading="lazy">cleopatra</figure><figure><img src="img/2020/cos/cupid.webp" alt="" loading="lazy">cupid</figure><figure><img src="img/2020/cos/dad.webp" alt="" loading="lazy">dad</figure><figure><img src="img/2020/cos/firefighter.webp" alt="" loading="lazy">firefighter</figure><figure><img src="img/2020/cos/lucy.webp" alt="" loading="lazy">lucy</figure><figure><img src="img/2020/cos/magician.webp" alt="" loading="lazy">magician</figure><figure><img src="img/2020/cos/maid.webp" alt="" loading="lazy">maid</figure><figure><img src="img/2020/cos/mom.webp" alt="" loading="lazy">mom</figure><figure><img src="img/2020/cos/ninja.webp" alt="" loading="lazy">ninja</figure><figure><img src="img/2020/cos/partier.webp" alt="" loading="lazy">partier</figure><figure><img src="img/2020/cos/princess.webp" alt="" loading="lazy">princess</figure><figure><img src="img/2020/cos/prisoner.webp" alt="" loading="lazy">prisoner</figure><figure><img src="img/2020/cos/referee.webp" alt="" loading="lazy">referee</figure><figure><img src="img/2020/cos/singer.webp" alt="" loading="lazy">singer</figure><figure><img src="img/2020/cos/spy.webp" alt="" loading="lazy">spy</figure><figure><img src="img/2020/cos/tortilla.webp" alt="" loading="lazy">tortilla</figure><figure><img src="img/2020/cos/astronaut.webp" alt="" loading="lazy">astronaut</figure><figure><img src="img/2020/cos/baby.webp" alt="" loading="lazy">baby</figure><figure><img src="img/2020/cos/bee-do.webp" alt="" loading="lazy">bee do</figure><figure><img src="img/2020/cos/cleopatra.webp" alt="" loading="lazy">cleopatra</figure><figure><img src="img/2020/cos/cupid.webp" alt="" loading="lazy">cupid</figure><figure><img src="img/2020/cos/dad.webp" alt="" loading="lazy">dad</figure><figure><img src="img/2020/cos/firefighter.webp" alt="" loading="lazy">firefighter</figure><figure><img src="img/2020/cos/lucy.webp" alt="" loading="lazy">lucy</figure><figure><img src="img/2020/cos/magician.webp" alt="" loading="lazy">magician</figure><figure><img src="img/2020/cos/maid.webp" alt="" loading="lazy">maid</figure><figure><img src="img/2020/cos/mom.webp" alt="" loading="lazy">mom</figure><figure><img src="img/2020/cos/ninja.webp" alt="" loading="lazy">ninja</figure><figure><img src="img/2020/cos/partier.webp" alt="" loading="lazy">partier</figure><figure><img src="img/2020/cos/princess.webp" alt="" loading="lazy">princess</figure><figure><img src="img/2020/cos/prisoner.webp" alt="" loading="lazy">prisoner</figure><figure><img src="img/2020/cos/referee.webp" alt="" loading="lazy">referee</figure><figure><img src="img/2020/cos/singer.webp" alt="" loading="lazy">singer</figure><figure><img src="img/2020/cos/spy.webp" alt="" loading="lazy">spy</figure><figure><img src="img/2020/cos/tortilla.webp" alt="" loading="lazy">tortilla</figure></div></div>
 
   <section class="run on-color">
     <div class="wrap">
@@ -352,6 +378,10 @@
     </div>
   </section>
 
+  <section class="sunset on-color">
+    <div class="wrap"><p>Gameloft sunset Minion Rush. We didn't. Every version here keeps running, offline and free, for as long as you want to play.</p></div>
+  </section>
+
   <section class="install" id="install">
     <div class="wrap">
       <img class="faq-minion" src="img/2020/faq.webp" alt="" width="640" height="698" loading="lazy">
@@ -406,6 +436,7 @@
     <a href="https://github.com/dotxr/Minion-Rush-Revival">GitHub</a>
     <a href="https://github.com/dotxr/Minion-Rush-Revival-Builds">Builds</a>
   </div>
+  <div class="credits"><img src="img/brand/gameloft.webp" alt="Gameloft" width="209" height="74"><img src="img/brand/illumination.webp" alt="Illumination" width="179" height="74"><img src="img/brand/universal.webp" alt="Universal Pictures" width="140" height="75"></div>
   <p>Unofficial, non-commercial fan project. Not affiliated with or endorsed by Gameloft, Universal, Illumination or NBCUniversal. Minion Rush and Despicable Me belong to their owners.</p>
 </footer>
 
