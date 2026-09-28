@@ -197,12 +197,23 @@
     .menu-btn { display: block; }
     header .pill { display: none; }
     header:has(nav.open) { background: var(--blue); }
-    .tickets { gap: 72px 10px; padding-top: 56px; }
-    .ticket { padding: 70px 8px 16px; border-radius: 20px; }
-    .ticket img { width: 84px; height: 92px; bottom: calc(100% - 64px); }
-    .build { grid-template-columns: 44px minmax(0, 1fr); }
+    .tickets { display: flex; gap: 10px; padding: 8px 16px 14px; margin: 0 -16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .tickets::-webkit-scrollbar { display: none; }
+    .ticket { flex: 0 0 auto; scroll-snap-align: start; display: grid; grid-template-columns: 50px auto; grid-template-rows: auto auto; column-gap: 8px; align-items: center; text-align: left; padding: 8px 16px 8px 8px; border-radius: 18px; box-shadow: 0 5px 0 #0b56a8, 0 10px 18px rgba(0, 40, 100, .22); }
+    .ticket img { position: static; grid-row: 1 / 3; width: 50px; height: 56px; transform: none; }
+    .ticket:hover img { transform: rotate(-4deg); }
+    .ticket b { font-size: 1.35rem; }
+    .ticket span { margin-top: 2px; font-size: .62rem; }
+    .ticket[aria-pressed="true"] { box-shadow: 0 5px 0 #c28a00, 0 10px 18px rgba(120, 80, 0, .25); }
+    .shelf { margin-top: 18px; border-radius: 22px; padding: 16px 14px; }
+    .shelf > p { font-size: .92rem; }
+    .build { grid-template-columns: 44px minmax(0, 1fr); gap: 4px 12px; padding: 16px 0; }
     .build .icon { width: 44px; height: 44px; border-radius: 13px; }
-    .build .pill { grid-column: 1 / -1; justify-self: stretch; justify-content: center; }
+    .build h3 { font-size: 1rem; }
+    .build p { font-size: .85rem; }
+    .build .pill { grid-column: 1 / -1; justify-self: stretch; justify-content: center; margin-top: 10px; }
+    .build .prog { grid-column: 1 / -1; }
+    .stat { flex-wrap: wrap; }
     .run .wrap, .install .wrap, .community .wrap { grid-template-columns: 1fr; }
     .run .phone { width: min(240px, 60vw); order: 2; }
     .install .faq-minion, .community .mascot { width: 200px; order: -1; }
