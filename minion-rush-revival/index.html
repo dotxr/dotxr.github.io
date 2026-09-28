@@ -69,10 +69,6 @@
   .hero p { max-width: 42ch; margin: 0 0 28px; font-size: 1.05rem; text-shadow: 0 2px 6px rgba(0,0,0,.4); }
   .hero .ctas { display: flex; flex-wrap: wrap; gap: 16px; }
 
-  .run { background: var(--orange) url(img/2020/run-minion-bg.webp) center/cover; overflow: hidden; }
-  .run .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 72px); align-items: center; }
-  .run .phone { justify-self: center; width: min(330px, 70vw); filter: drop-shadow(0 30px 40px rgba(120, 40, 0, .45)); transform: rotate(-4deg); }
-  .run .head { text-align: left; margin: 0 0 28px; }
   .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
   .facts li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; background: rgba(255, 255, 255, .14); border: 2px solid rgba(255, 255, 255, .25); border-radius: 18px; padding: 14px 18px; }
   .facts li img { width: 44px; height: 44px; object-fit: contain; }
@@ -207,8 +203,6 @@
     .build .pill { grid-column: 1 / -1; justify-self: stretch; justify-content: center; margin-top: 10px; }
     .build .prog { grid-column: 1 / -1; }
     .stat { flex-wrap: wrap; }
-    .run .wrap, .install .wrap, .community .wrap { grid-template-columns: 1fr; }
-    .run .phone { width: min(240px, 60vw); order: 2; }
     .install .faq-minion, .community .mascot { width: 200px; order: -1; }
     .hero { background-position: 70% center; }
     .hero::after { background: linear-gradient(0deg, rgba(4, 40, 90, .88) 0%, rgba(4, 40, 90, .5) 45%, rgba(4, 40, 90, 0) 75%); }
@@ -276,23 +270,6 @@
   </section>
 
   <div class="parade" aria-hidden="true"><div class="track"><figure><img src="img/2020/cos/astronaut.webp" alt="" loading="lazy">astronaut</figure><figure><img src="img/2020/cos/baby.webp" alt="" loading="lazy">baby</figure><figure><img src="img/2020/cos/bee-do.webp" alt="" loading="lazy">bee do</figure><figure><img src="img/2020/cos/cleopatra.webp" alt="" loading="lazy">cleopatra</figure><figure><img src="img/2020/cos/cupid.webp" alt="" loading="lazy">cupid</figure><figure><img src="img/2020/cos/dad.webp" alt="" loading="lazy">dad</figure><figure><img src="img/2020/cos/firefighter.webp" alt="" loading="lazy">firefighter</figure><figure><img src="img/2020/cos/lucy.webp" alt="" loading="lazy">lucy</figure><figure><img src="img/2020/cos/magician.webp" alt="" loading="lazy">magician</figure><figure><img src="img/2020/cos/maid.webp" alt="" loading="lazy">maid</figure><figure><img src="img/2020/cos/mom.webp" alt="" loading="lazy">mom</figure><figure><img src="img/2020/cos/ninja.webp" alt="" loading="lazy">ninja</figure><figure><img src="img/2020/cos/partier.webp" alt="" loading="lazy">partier</figure><figure><img src="img/2020/cos/princess.webp" alt="" loading="lazy">princess</figure><figure><img src="img/2020/cos/prisoner.webp" alt="" loading="lazy">prisoner</figure><figure><img src="img/2020/cos/referee.webp" alt="" loading="lazy">referee</figure><figure><img src="img/2020/cos/singer.webp" alt="" loading="lazy">singer</figure><figure><img src="img/2020/cos/spy.webp" alt="" loading="lazy">spy</figure><figure><img src="img/2020/cos/tortilla.webp" alt="" loading="lazy">tortilla</figure><figure><img src="img/2020/cos/astronaut.webp" alt="" loading="lazy">astronaut</figure><figure><img src="img/2020/cos/baby.webp" alt="" loading="lazy">baby</figure><figure><img src="img/2020/cos/bee-do.webp" alt="" loading="lazy">bee do</figure><figure><img src="img/2020/cos/cleopatra.webp" alt="" loading="lazy">cleopatra</figure><figure><img src="img/2020/cos/cupid.webp" alt="" loading="lazy">cupid</figure><figure><img src="img/2020/cos/dad.webp" alt="" loading="lazy">dad</figure><figure><img src="img/2020/cos/firefighter.webp" alt="" loading="lazy">firefighter</figure><figure><img src="img/2020/cos/lucy.webp" alt="" loading="lazy">lucy</figure><figure><img src="img/2020/cos/magician.webp" alt="" loading="lazy">magician</figure><figure><img src="img/2020/cos/maid.webp" alt="" loading="lazy">maid</figure><figure><img src="img/2020/cos/mom.webp" alt="" loading="lazy">mom</figure><figure><img src="img/2020/cos/ninja.webp" alt="" loading="lazy">ninja</figure><figure><img src="img/2020/cos/partier.webp" alt="" loading="lazy">partier</figure><figure><img src="img/2020/cos/princess.webp" alt="" loading="lazy">princess</figure><figure><img src="img/2020/cos/prisoner.webp" alt="" loading="lazy">prisoner</figure><figure><img src="img/2020/cos/referee.webp" alt="" loading="lazy">referee</figure><figure><img src="img/2020/cos/singer.webp" alt="" loading="lazy">singer</figure><figure><img src="img/2020/cos/spy.webp" alt="" loading="lazy">spy</figure><figure><img src="img/2020/cos/tortilla.webp" alt="" loading="lazy">tortilla</figure></div></div>
-
-  <section class="run on-color">
-    <div class="wrap">
-      <img class="phone" src="img/2020/minion-ip7.webp" alt="Minion Rush running on a phone" width="359" height="589" loading="lazy">
-      <div>
-        <div class="head">
-          <h2><small>Run with</small><span>the minions</span></h2>
-          <p>The only runner packed with all the fun of the Despicable Me movies is back online. This is a fan revival, so it's free, with no ads.</p>
-        </div>
-        <ul class="facts">
-          <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Three versions</b>Play the final 13.3.0 or go back to 9.7.1b and 9.6.1b, the classic game from before the remake.</div></li>
-          <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Separate progress</b>Each version keeps its own save, so progress in one doesn't touch the others.</div></li>
-          <li><img src="img/2020/banana.webp" alt="" width="44" height="44"><div><b>Play offline</b>The classic versions carry their own server, so they run without internet, and everything in the shop costs 1.</div></li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
   <section class="download on-color" id="download">
     <div class="wrap">
