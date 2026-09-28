@@ -505,10 +505,10 @@ const ICON = {
   ios: '<svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9a4.8 4.8 0 0 0-3.8-2c-1.6-.2-3.1.9-3.9.9s-2-.9-3.4-.9a5 5 0 0 0-4.2 2.6c-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.6s1.7-.8 3.3-.8 2 .8 3.4.8 2.2-1.3 3-2.5a10 10 0 0 0 1.4-2.8 4.4 4.4 0 0 1-2.4-4.2ZM13.9 5a4.4 4.4 0 0 0 1-3.2 4.5 4.5 0 0 0-2.9 1.5 4.2 4.2 0 0 0-1.1 3.1A3.7 3.7 0 0 0 13.9 5Z"/></svg>',
 };
 const KIND = {
-  stable: ["", "Plays on the revival server: events, leaderboards and the store."],
-  experimental: ["Offline", "The server runs inside the app, so it plays without internet and your save stays on your device. Everything in the shop costs 1."],
-  buggy: ["Offline", "Experimental and buggy: it plays offline, but a \"Could not log in\" popup shows after the tutorial (tap OK) and some features may not work. Report issues on Discord."],
-  untested: ["Offline", "Built like the other offline builds but not played through yet. Tell us on Discord if it works."],
+  stable: ["", "Stable build, most if not all things work."],
+  experimental: ["Offline", "Experimental build, some features may not be fully working or complete."],
+  buggy: ["Offline", "Very early build, some features may not work. Report issues on Discord."],
+  untested: ["Offline", "Untested, no support will be provided for this version"],
 };
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
