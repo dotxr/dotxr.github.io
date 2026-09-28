@@ -232,12 +232,6 @@
   .parade figure:nth-child(3n) img { animation-duration: .8s; }
   @keyframes scroll { to { transform: translateX(-50%); } }
   @keyframes hop { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-14px) rotate(3deg); } }
-  .sunset { position: relative; background: #2a1450 url(img/brand/sunset.webp) center/cover; min-height: 340px; display: flex; align-items: flex-end; }
-  .sunset .wrap { padding-block: 40px; }
-  .sunset p { max-width: 460px; color: #fff; font-weight: 700; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
-  .credits { display: flex; gap: 28px; justify-content: center; align-items: center; flex-wrap: wrap; margin: 12px 0; }
-  .credits img { height: 38px; width: auto; opacity: .85; transition: transform .2s; }
-  .credits img:hover { transform: rotate(-8deg) scale(1.15); }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -375,10 +369,6 @@
     </div>
   </section>
 
-  <section class="sunset on-color">
-    <div class="wrap"><p>Gameloft sunset Minion Rush. We didn't. Every version here keeps running, offline and free, for as long as you want to play.</p></div>
-  </section>
-
   <section class="install" id="install">
     <div class="wrap">
       <img class="faq-minion" src="img/2020/faq.webp" alt="" width="640" height="698" loading="lazy">
@@ -433,7 +423,6 @@
     <a href="https://github.com/dotxr/Minion-Rush-Revival">GitHub</a>
     <a href="https://github.com/dotxr/Minion-Rush-Revival-Builds">Builds</a>
   </div>
-  <div class="credits"><img src="img/brand/gameloft.webp" alt="Gameloft" width="209" height="74"><img src="img/brand/illumination.webp" alt="Illumination" width="179" height="74"><img src="img/brand/universal.webp" alt="Universal Pictures" width="140" height="75"></div>
   <p>Unofficial, non-commercial fan project. Not affiliated with or endorsed by Gameloft, Universal, Illumination or NBCUniversal. Minion Rush and Despicable Me belong to their owners.</p>
 </footer>
 
