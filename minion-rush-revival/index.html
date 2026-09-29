@@ -507,6 +507,7 @@ const VERS = {
   "13.3.0": { art: "cos/bee-do.webp", era: "Final Unity Build", blurb: "The last true Minion Rush Unity Update." },
   "9.7.1b": { art: "cos/astronaut.webp", era: "2023 5ycu", blurb: "2023 era 5ycu build" },
   "9.6.1b": { art: "cos/ninja.webp", era: "2023 5ycu", blurb: "2023 era 5ycu build" },
+  "7.6.0": { art: "cos/maid.webp", era: "Adventure beta", blurb: "The late-2020 Adventure beta (Android 7.6.0g, iOS 7.6.0e), online on the revival server." },
   "7.3.0i": { art: "cos/spy.webp", era: "Adventure beta", blurb: "The 2020 Adventure beta: the redesigned Adventure mode that came before the Unity remake." },
   "5.7.0h": { art: "cos/prisoner.webp", era: "2018 pre-5ycu", blurb: "Final pre-5ycu update" },
 };
@@ -540,7 +541,7 @@ const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
       const st = b.status || "stable", [kind, text] = KIND[st];
       return `<div class="build ${st}" data-name="${esc(b.name)}">
         <div class="icon">${ICON[b.platform]}</div>
-        <div><h3>${PLAT[b.platform]}${kind ? " " + kind : ""}${st !== "stable" ? ` <span class="badge ${st}">${st}</span>` : ""}</h3><p>${text}</p><small>${esc(b.min_os)} or newer, ${MB(b.size)}${b.build ? `<br>Build ${b.build}${b.released ? ", released " + esc(new Date(b.released).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })) : ""}` : ""}</small></div>
+        <div><h3>${PLAT[b.platform]}${kind ? " " + (b.offline === false ? "Online" : kind) : ""}${st !== "stable" ? ` <span class="badge ${st}">${st}</span>` : ""}</h3><p>${text}</p><small>${esc(b.min_os)} or newer, ${MB(b.size)}${b.build ? `<br>Build ${b.build}${b.released ? ", released " + esc(new Date(b.released).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })) : ""}` : ""}</small></div>
         <button class="pill ${st === "deprecated" ? "white" : "orange"} small get" type="button">Download ${b.platform === "ios" ? "IPA" : "APK"}</button>
         <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
       </div>`;
