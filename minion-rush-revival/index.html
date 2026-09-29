@@ -75,11 +75,11 @@
   .facts b { display: block; font-weight: 900; text-transform: uppercase; font-size: .95rem; }
 
   .download { background: var(--sky) url(img/2020/newsletter-bg.webp) center/cover; }
-  .tickets { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 96px clamp(12px, 2.4vw, 26px); max-width: 980px; margin: 0 auto; padding-top: 70px; }
-  .ticket { position: relative; border: 0; border-radius: 26px; background: #fff; color: var(--blue); padding: 88px 16px 20px; text-align: center; cursor: pointer; font: inherit; box-shadow: 0 7px 0 #0b56a8, 0 18px 30px rgba(0, 40, 100, .25); transition: transform .15s, box-shadow .15s, background .2s; }
-  .ticket img { position: absolute; left: 50%; bottom: calc(100% - 84px); width: 118px; height: 128px; object-fit: contain; transform: translateX(-50%); filter: drop-shadow(0 10px 8px rgba(0, 30, 80, .3)); transition: transform .25s cubic-bezier(.3, 1.6, .5, 1); }
-  .ticket b { display: block; font-size: clamp(1.9rem, 4vw, 2.7rem); font-weight: 900; line-height: 1; letter-spacing: -.02em; }
-  .ticket span { display: block; margin-top: 8px; font-weight: 900; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; color: var(--orange-2); }
+  .tickets { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 58px clamp(8px, 1.5vw, 16px); max-width: 980px; margin: 0 auto; padding-top: 42px; }
+  .ticket { position: relative; border: 0; border-radius: 16px; background: #fff; color: var(--blue); padding: 53px 10px 12px; text-align: center; cursor: pointer; font: inherit; box-shadow: 0 7px 0 #0b56a8, 0 18px 30px rgba(0, 40, 100, .25); transition: transform .15s, box-shadow .15s, background .2s; }
+  .ticket img { position: absolute; left: 50%; bottom: calc(100% - 50px); width: 71px; height: 77px; object-fit: contain; transform: translateX(-50%); filter: drop-shadow(0 10px 8px rgba(0, 30, 80, .3)); transition: transform .25s cubic-bezier(.3, 1.6, .5, 1); }
+  .ticket b { display: block; font-size: clamp(1.15rem, 2.4vw, 1.6rem); font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+  .ticket span { display: block; margin-top: 5px; font-weight: 900; font-size: .5rem; text-transform: uppercase; letter-spacing: .05em; color: var(--orange-2); }
   .ticket:hover { transform: translateY(-3px); }
   .ticket:hover img { transform: translateX(-50%) translateY(-6px) rotate(-4deg); }
   .ticket[aria-pressed="true"] { background: var(--yellow); color: var(--ink); box-shadow: 0 7px 0 #c28a00, 0 18px 30px rgba(120, 80, 0, .3); }
@@ -507,8 +507,8 @@ const VERS = {
   "13.3.0": { art: "cos/bee-do.webp", era: "Final Unity Build", blurb: "The last true Minion Rush Unity Update." },
   "9.7.1b": { art: "cos/astronaut.webp", era: "2023 5ycu", blurb: "2023 era 5ycu build" },
   "9.6.1b": { art: "cos/ninja.webp", era: "2023 5ycu", blurb: "2023 era 5ycu build" },
-  "7.6.0": { art: "cos/maid.webp", era: "Adventure beta", blurb: "The late-2020 Adventure beta (Android 7.6.0g, iOS 7.6.0e), online on the revival server." },
-  "7.3.0i": { art: "cos/spy.webp", era: "Adventure beta", blurb: "The 2020 Adventure beta: the redesigned Adventure mode that came before the Unity remake." },
+  "7.6.0": { art: "cos/maid.webp", era: "Adventure beta", blurb: "One of the last Adventure Beta builds (Android 7.6.0g, iOS 7.6.0e), online on the revival server." },
+  "7.3.0i": { art: "cos/spy.webp", era: "Adventure beta", blurb: "One of the first Adventure Beta builds" },
   "5.7.0h": { art: "cos/prisoner.webp", era: "2018 pre-5ycu", blurb: "Final pre-5ycu update" },
 };
 const PLAT = { android: "Android", ios: "iPhone / iPad" };
