@@ -80,6 +80,7 @@
   .ticket img { position: absolute; left: 50%; bottom: calc(100% - 50px); width: 71px; height: 77px; object-fit: contain; transform: translateX(-50%); filter: drop-shadow(0 10px 8px rgba(0, 30, 80, .3)); transition: transform .25s cubic-bezier(.3, 1.6, .5, 1); }
   .ticket b { display: block; font-size: clamp(1.15rem, 2.4vw, 1.6rem); font-weight: 900; line-height: 1; letter-spacing: -.02em; }
   .ticket span { display: block; margin-top: 5px; font-weight: 900; font-size: .5rem; text-transform: uppercase; letter-spacing: .05em; color: var(--orange-2); }
+  .build .log { margin: 4px 0; font-size: .82rem; font-weight: 700; opacity: .8; }
   .ticket:hover { transform: translateY(-3px); }
   .ticket:hover img { transform: translateX(-50%) translateY(-6px) rotate(-4deg); }
   .ticket[aria-pressed="true"] { background: var(--yellow); color: var(--ink); box-shadow: 0 7px 0 #c28a00, 0 18px 30px rgba(120, 80, 0, .3); }
@@ -541,7 +542,7 @@ const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
       const st = b.status || "stable", [kind, text] = KIND[st];
       return `<div class="build ${st}" data-name="${esc(b.name)}">
         <div class="icon">${ICON[b.platform]}</div>
-        <div><h3>${PLAT[b.platform]}${kind ? " " + (b.offline === false ? "Online" : kind) : ""}${st !== "stable" ? ` <span class="badge ${st}">${st}</span>` : ""}</h3><p>${text}</p><small>${esc(b.min_os)} or newer, ${MB(b.size)}${b.build ? `<br>Build ${b.build}${b.released ? ", released " + esc(new Date(b.released).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })) : ""}` : ""}</small></div>
+        <div><h3>${PLAT[b.platform]}${kind ? " " + (b.offline === false ? "Online" : kind) : ""}${st !== "stable" ? ` <span class="badge ${st}">${st}</span>` : ""}</h3><p>${text}</p>${b.changelog ? `<p class="log">${esc(b.changelog)}</p>` : ""}<small>${esc(b.min_os)} or newer, ${MB(b.size)}${b.build ? `<br>Build ${b.build}${b.released ? ", released " + esc(new Date(b.released).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })) : ""}` : ""}</small></div>
         <button class="pill ${st === "deprecated" ? "white" : "orange"} small get" type="button">Download ${b.platform === "ios" ? "IPA" : "APK"}</button>
         <div class="prog" hidden><div class="bar"><i></i></div><div class="stat"><span></span><span></span></div></div>
       </div>`;
