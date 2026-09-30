@@ -1,4 +1,4 @@
-/* Windows XP desktop — window manager, login, apps */
+/* Windows XP desktop — window manager, apps */
 (function () {
 	'use strict';
 
@@ -683,7 +683,7 @@
 		$('#clock').title = d.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 	}
 
-	/* ------------------------------------------------- login / logoff / shutdown */
+	/* ------------------------------------------------- boot / logoff / shutdown */
 	var session = 0;
 
 	function show(id) { $('#' + id).classList.remove('hidden'); }
@@ -702,36 +702,18 @@
 		closeStart();
 	}
 
-	function logIn() {
-		var s = ++session;
-		hide('login');
-		show('welcome');
-		// unlock the music element inside the click so it can autoplay later
-		music.muted = true;
-		music.play().then(function () { music.pause(); music.currentTime = 0; music.muted = false; })
-			.catch(function () { music.muted = false; });
-		sfx('startup');
-		var started = false;
-		function startMusic() {
-			if (started || s !== session) return;
-			started = true;
-			music.currentTime = 0;
-			play();
-		}
-		sounds.startup.onended = startMusic;
-		setTimeout(startMusic, 5500);
-
-		setTimeout(function () {
-			if (s !== session) return;
-			hide('welcome');
-			show('desktop');
-			var wa = win('winamp');
-			wa.dataset.pos = 'right';
-			open('winamp');
-			var bio = win('bio');
-			bio.dataset.pos = 'center';
-			open('bio');
-		}, 1800);
+	// Shows the desktop with Winamp and About Me open. The startup chime only
+	// plays when a click led here (restart), since browsers block it on load.
+	function boot(chime) {
+		session++;
+		hide('bsod'); hide('safeoff'); hide('standby'); hide('turnoff');
+		resetDesktop();
+		if (chime) sfx('startup');
+		show('desktop');
+		win('winamp').dataset.pos = 'right';
+		open('winamp');
+		win('bio').dataset.pos = 'center';
+		open('bio');
 	}
 
 	function saying(text, ms, then) {
@@ -740,20 +722,12 @@
 		setTimeout(function () { hide('saying'); then(); }, ms);
 	}
 
-	function toLogin() {
-		session++;
-		sounds.startup.pause();
-		hide('desktop'); hide('bsod'); hide('safeoff'); hide('standby'); hide('turnoff');
-		resetDesktop();
-		show('login');
-	}
-
 	function logOff() {
 		session++;
 		stop();
 		sfx('logoff');
 		hide('desktop');
-		saying('logging off...', 2200, toLogin);
+		saying('logging off...', 2200, function () { boot(true); });
 	}
 
 	function turnOffDialog() {
@@ -767,10 +741,9 @@
 		stop();
 		sfx('shutdown');
 		hide('desktop');
-		hide('login');
 		saying('Windows is shutting down...', 3000, function () {
 			resetDesktop();
-			if (restart) toLogin();
+			if (restart) boot(true);
 			else show('safeoff');
 		});
 	}
@@ -785,7 +758,7 @@
 			function wake() {
 				document.removeEventListener('keydown', wake);
 				$('#bsod').removeEventListener('pointerdown', wake);
-				toLogin();
+				boot(true);
 			}
 			document.addEventListener('keydown', wake);
 			$('#bsod').addEventListener('pointerdown', wake);
@@ -793,8 +766,6 @@
 	}
 
 	function setupSession() {
-		$('#loginUser').addEventListener('click', logIn);
-		$('#loginOff').addEventListener('click', turnOffDialog);
 		$('#turnoff').addEventListener('click', function (e) {
 			var b = e.target.closest('[data-to]');
 			if (!b && e.target !== this) return;
@@ -810,7 +781,7 @@
 				$('#standby').onclick = function () { hide('standby'); if (wasPlaying) play(); };
 			}
 		});
-		$('#safeoff').addEventListener('click', toLogin);
+		$('#safeoff').addEventListener('click', function () { boot(true); });
 	}
 
 	/* ----------------------------------------------------------------- desktop */
@@ -864,6 +835,5 @@
 	Tetris.init();
 	tick();
 	setInterval(tick, 5000);
-	// bio window starts closed until login
-	$$('.window').forEach(function (w) { w.classList.add('closed'); });
+	boot(false);
 })();
