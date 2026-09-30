@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>.av</title>
+<meta name="description" content="Avery (.av) — reverse engineer since 2024, game preservationist.">
+<meta property="og:title" content=".av">
+<meta property="og:description" content="Avery (.av) — reverse engineer since 2024, game preservationist.">
+<meta property="og:image" content="https://dotxr.github.io/xp/img/avatar.jpg">
+<meta name="theme-color" content="#245edb">
+<link rel="icon" href="xp/img/avatar-48.jpg">
+<link rel="stylesheet" href="xp/css/xp.css">
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="login" class="screen">
+	<div class="lg-top"></div>
+	<div class="lg-mid">
+		<div class="lg-left">
+			<div class="lg-logo">
+				<span class="flag"><i></i><i></i><i></i><i></i></span>
+				<span class="lg-brand"><small>Microsoft<sup>®</sup></small>Windows<sup class="xp">xp</sup></span>
+			</div>
+			<p class="lg-begin">To begin, click your user name</p>
+		</div>
+		<div class="lg-divider"></div>
+		<div class="lg-right">
+			<button type="button" class="lg-user" id="loginUser">
+				<img src="xp/img/avatar-96.jpg" alt="" width="48" height="48">
+				<span><b>.av</b><small>Avery</small></span>
+			</button>
+		</div>
+	</div>
+	<div class="lg-bottom">
+		<button type="button" class="lg-off" id="loginOff"><span></span>Turn off computer</button>
+		<p class="lg-hint">After you log on, you can add or change accounts.<br>Just go to Control Panel and click User Accounts.</p>
+	</div>
+</div>
+
+<!-- welcome splash -->
+<div id="welcome" class="screen hidden">
+	<div class="lg-top"></div>
+	<div class="lg-mid"><p class="welcome-text">welcome</p></div>
+	<div class="lg-bottom"></div>
+</div>
+
+<!-- ============ DESKTOP ============ -->
+<div id="desktop" class="hidden">
+	<ul id="icons">
+		<li data-open="explorer:computer"><img src="xp/img/my_computer.png" alt=""><span>My Computer</span></li>
+		<li data-open="explorer:documents"><img src="xp/img/my_documents.png" alt=""><span>My Documents</span></li>
+		<li data-open="explorer:recycle"><img src="xp/img/recycle_bin.png" alt=""><span>Recycle Bin</span></li>
+		<li data-open="bsod"><img src="xp/img/my_network_places.png" alt=""><span>My Network Places</span></li>
+		<li data-open="ie"><img src="xp/img/ie-ico.png" alt=""><span>Internet Explorer</span></li>
+	</ul>
+
+	<!-- About me (Explorer style) -->
+	<div class="window" id="win-bio" data-title="About Me - .av" data-icon="xp/img/startmenu/mycomp.png" data-task-icon="xp/img/openwelcome.png" style="width:760px;height:520px">
+		<ul class="menubar"><li>File</li><li>Edit</li><li>View</li><li>Favorites</li><li>Tools</li><li>Help</li></ul>
+		<div class="toolbar">
+			<img src="xp/img/toolbar1.png" alt="Back"><img src="xp/img/toolbar2.png" alt="Forward"><img src="xp/img/toolbar3.png" alt="Up">
+			<i class="sep"></i>
+			<img src="xp/img/toolbar4.png" alt="Search"><img src="xp/img/toolbar5.png" alt="Folders">
+			<i class="sep"></i>
+			<img src="xp/img/toolbar6.png" alt="Views">
+		</div>
+		<div class="addressbar">
+			<span class="lbl">Address</span>
+			<div class="addr"><img src="xp/img/pc-icon.png" alt=""><input type="text" value="C:\Documents and Settings\.av\about_me" readonly><i class="dd"></i></div>
+			<span class="go"><img src="xp/img/greenGo.png" alt=""> Go</span>
+		</div>
+		<div class="panes">
+			<aside class="tasks">
+				<section>
+					<h3>Links</h3>
+					<ul>
+						<li><a href="https://github.com/dotav" target="_blank" rel="noopener"><img src="xp/img/startmenu/mywebsite.png" alt="">GitHub</a></li>
+						<li><a href="https://discord.gg/RyQWCxqrx6" target="_blank" rel="noopener"><img src="xp/img/startmenu/msn16.png" alt="">Discord server</a></li>
+					</ul>
+				</section>
+				<section>
+					<h3>Other Places</h3>
+					<ul>
+						<li><a data-open="explorer:documents"><img src="xp/img/startmenu/myrecent.png" alt="">My Documents</a></li>
+						<li><a data-open="explorer:computer"><img src="xp/img/startmenu/mycomp.png" alt="">My Computer</a></li>
+						<li><a data-open="winamp"><img src="xp/img/startmenu/winamp.png" alt="">Winamp</a></li>
+					</ul>
+				</section>
+				<section>
+					<h3>Details</h3>
+					<div class="details">
+						<b>.av</b>
+						Avery<br>
+						she/her<br><br>
+						Reverse engineer<br>since 2024
+					</div>
+				</section>
+			</aside>
+			<article class="content bio">
+				<div class="bio-head">
+					<img src="xp/img/avatar.jpg" alt="Avery's profile picture" width="128" height="128">
+					<div>
+						<h1>Avery <span>(.av)</span></h1>
+						<p class="pronouns">she/her</p>
+						<p class="role">Reverse engineer since 2024 · Game preservationist</p>
+					</div>
+				</div>
+				<h2>About me</h2>
+				<p>Hi, I'm Avery. I've been reverse engineering since 2024, and I work on preserving games so they stay playable after their servers and stores go dark.</p>
+				<h2>Find me</h2>
+				<ul class="links">
+					<li><a href="https://github.com/dotav" target="_blank" rel="noopener"><img src="xp/img/startmenu/mywebsite.png" alt=""><span><b>GitHub</b>github.com/dotav</span></a></li>
+					<li><a href="https://discord.gg/RyQWCxqrx6" target="_blank" rel="noopener"><img src="xp/img/startmenu/msn16.png" alt=""><span><b>Discord</b>discord.gg/RyQWCxqrx6</span></a></li>
+				</ul>
+			</article>
+		</div>
+	</div>
+
+	<!-- Explorer -->
+	<div class="window closed" id="win-explorer" data-title="My Computer" data-icon="xp/img/startmenu/mycomp.png" style="width:640px;height:430px">
+		<ul class="menubar"><li>File</li><li>Edit</li><li>View</li><li>Favorites</li><li>Tools</li><li>Help</li></ul>
+		<div class="toolbar">
+			<img src="xp/img/toolbar1.png" alt="Back" class="btn" data-ex="back"><img src="xp/img/toolbar2.png" alt="Forward" class="btn" data-ex="fwd"><img src="xp/img/toolbar3.png" alt="Up" class="btn" data-ex="up">
+			<i class="sep"></i>
+			<img src="xp/img/toolbar4.png" alt="Search"><img src="xp/img/toolbar5.png" alt="Folders">
+			<i class="sep"></i>
+			<img src="xp/img/toolbar6.png" alt="Views">
+		</div>
+		<div class="addressbar">
+			<span class="lbl">Address</span>
+			<div class="addr"><img src="xp/img/pc-icon.png" alt=""><input type="text" id="exAddr" readonly><i class="dd"></i></div>
+			<span class="go"><img src="xp/img/greenGo.png" alt=""> Go</span>
+		</div>
+		<div class="panes">
+			<aside class="tasks" id="exTasks"></aside>
+			<div class="content files" id="exFiles"></div>
+		</div>
+	</div>
+
+	<!-- Internet Explorer -->
+	<div class="window closed" id="win-ie" data-title="Internet Explorer" data-icon="xp/img/startmenu/ie16.png" data-task-icon="xp/img/openinternet.png" style="width:820px;height:560px">
+		<ul class="menubar"><li>File</li><li>Edit</li><li>View</li><li>Favorites</li><li>Tools</li><li>Help</li><li class="winlogo"><img src="xp/img/windowslogo.png" alt=""></li></ul>
+		<div class="toolbar">
+			<img src="xp/img/ie1.png" alt="Back" class="btn" data-ie="back"><img src="xp/img/ie2.png" alt="Forward" class="btn" data-ie="fwd"><img src="xp/img/ie3.png" alt="Stop" class="btn"><img src="xp/img/ie4.png" alt="Refresh" class="btn" data-ie="refresh"><img src="xp/img/ie5.png" alt="Home" class="btn" data-ie="home">
+			<i class="sep"></i>
+			<img src="xp/img/ie6.png" alt="Search" class="btn" data-ie="home"><img src="xp/img/ie7.png" alt="Favorites" class="btn"><img src="xp/img/ie8.png" alt="Media" class="btn" data-open="winamp"><img src="xp/img/ie9.png" alt="History" class="btn">
+			<i class="sep"></i>
+			<img src="xp/img/ie10.png" alt="Mail" class="btn"><img src="xp/img/ie11.png" alt="Print" class="btn"><img src="xp/img/ie12.png" alt="" class="btn">
+		</div>
+		<form class="addressbar" id="ieForm">
+			<span class="lbl">Address</span>
+			<div class="addr"><img src="xp/img/ie-addressbar-ico.png" alt=""><input type="text" id="ieAddr" value="about:home" spellcheck="false" autocomplete="off"><i class="dd"></i></div>
+			<button class="go" type="submit"><img src="xp/img/greenGo.png" alt=""> Go</button>
+			<span class="links">Links <img src="xp/img/ieLinks.png" alt=""></span>
+		</form>
+		<div class="ie-view" id="ieView"></div>
+		<div class="statusbar"><img src="xp/img/iedone.png" alt="Done"><img src="xp/img/iefooter.png" alt="" class="right"></div>
+	</div>
+
+	<!-- Winamp -->
+	<div class="window closed skinless" id="win-winamp" data-title="Winamp" data-task-icon="xp/img/openwinamp.png">
+		<div class="wa-drag"></div>
+		<button class="wa-min" type="button" title="Minimize"></button>
+		<button class="wa-close" type="button" title="Close"></button>
+		<div class="wa-time" id="waTime">0:00</div>
+		<div class="wa-title"><span id="waTitle">Marching - Yeat.m4a</span></div>
+		<div class="wa-seek" id="waSeek"><div class="wa-thumb" id="waThumb"></div></div>
+		<div class="wa-buttons">
+			<button type="button" data-wa="prev" title="Previous"></button><button type="button" data-wa="play" title="Play"></button><button type="button" data-wa="pause" title="Pause"></button><button type="button" data-wa="stop" title="Stop"></button><button type="button" data-wa="next" title="Next"></button>
+		</div>
+		<ol class="wa-playlist"><li class="selected" id="waItem">1. Marching - Yeat.m4a<span id="waLen"></span></li></ol>
+	</div>
+
+	<!-- Minesweeper -->
+	<div class="window closed" id="win-mines" data-title="Minesweeper" data-icon="xp/img/startmenu/minesweeper.png" data-task-icon="xp/img/openminesweeper.png" data-nomax>
+		<ul class="menubar gamemenu">
+			<li class="has-menu">Game
+				<ul>
+					<li data-ms="new">New</li>
+					<li class="div"></li>
+					<li data-ms="beginner" class="check">Beginner</li>
+					<li data-ms="intermediate">Intermediate</li>
+					<li data-ms="expert">Expert</li>
+				</ul>
+			</li>
+			<li>Help</li>
+		</ul>
+		<div class="ms" id="ms">
+			<div class="ms-top">
+				<div class="ms-digits" id="msMines"></div>
+				<button type="button" class="ms-face" id="msFace"></button>
+				<div class="ms-digits" id="msTime"></div>
+			</div>
+			<div class="ms-grid" id="msGrid"></div>
+		</div>
+	</div>
+
+	<!-- Tetris -->
+	<div class="window closed" id="win-tetris" data-title="Tetris" data-icon="xp/img/startmenu/tetris.png" data-task-icon="xp/img/opentetris.png" data-nomax>
+		<div class="tetris" id="tetris">
+			<canvas id="tCanvas" width="200" height="400"></canvas>
+			<div class="t-side">
+				<div class="t-box"><b>Next</b><canvas id="tNext" width="80" height="80"></canvas></div>
+				<div class="t-box"><b>Score</b><span id="tScore">0</span></div>
+				<div class="t-box"><b>Lines</b><span id="tLines">0</span></div>
+				<div class="t-box"><b>Level</b><span id="tLevel">1</span></div>
+				<button type="button" class="xpbtn" id="tStart">Start</button>
+				<p class="t-help">←→ move<br>↑ rotate<br>↓ drop<br>Space hard drop<br>P pause</p>
+			</div>
+			<div class="t-pad">
+				<button type="button" data-t="left">◀</button><button type="button" data-t="rotate">⟳</button><button type="button" data-t="right">▶</button><button type="button" data-t="down">▼</button><button type="button" data-t="drop">⤓</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Command Prompt -->
+	<div class="window closed" id="win-cmd" data-title="Command Prompt" data-icon="xp/img/startmenu/commandPrompt.png" style="width:660px;height:400px">
+		<div class="cmd" id="cmd">
+			<div id="cmdOut"></div>
+			<div class="cmd-line"><span id="cmdPrompt">C:\Documents and Settings\.av&gt;</span><input type="text" id="cmdIn" spellcheck="false" autocomplete="off" autocapitalize="off"></div>
+		</div>
+	</div>
+
+	<!-- Run -->
+	<div class="window closed dialog" id="win-run" data-title="Run" data-nomax data-nomin style="width:360px">
+		<form class="run" id="runForm">
+			<div class="run-top"><img src="xp/img/startmenu/run.png" alt=""><p>Type the name of a program, folder, document, or Internet resource, and Windows will open it for you.</p></div>
+			<label>Open: <input type="text" id="runIn" value="cmd" autocomplete="off" spellcheck="false"></label>
+			<div class="btns"><button class="xpbtn" type="submit">OK</button><button class="xpbtn" type="button" data-close>Cancel</button><button class="xpbtn" type="button" disabled>Browse...</button></div>
+		</form>
+	</div>
+
+	<!-- Taskbar -->
+	<div id="taskbar">
+		<button type="button" id="startBtn" aria-label="start"></button>
+		<ul id="quicklaunch">
+			<li><button type="button" data-open="desktop" title="Show Desktop" style="background-image:url(xp/img/quick_launch_destkop.png)"></button></li>
+			<li><button type="button" data-open="ie" title="Internet Explorer" style="background-image:url(xp/img/quick_launch_ie.png)"></button></li>
+			<li><button type="button" data-open="winamp" title="Winamp" style="background-image:url(xp/img/quick_launch_winamp.png)"></button></li>
+			<li><button type="button" data-open="cmd" title="Command Prompt" style="background-image:url(xp/img/quick_launch_cmd.png)"></button></li>
+		</ul>
+		<ul id="tasks"></ul>
+		<div id="tray">
+			<ul>
+				<li><button type="button" data-open="winamp" title="Winamp" style="background-image:url(xp/img/system_tray_winamp.png)"></button></li>
+				<li><button type="button" data-open="bio" title="About Me" style="background-image:url(xp/img/system_tray_msn.png)"></button></li>
+				<li><button type="button" data-open="ie" title="Local Area Connection: Connected" style="background-image:url(xp/img/system_tray_lan.png)"></button></li>
+			</ul>
+			<time id="clock"></time>
+		</div>
+	</div>
+
+	<!-- Start menu -->
+	<div id="startmenu" class="hidden">
+		<div class="sm-head"><img src="xp/img/avatar-96.jpg" alt="" width="42" height="42"><b>.av</b></div>
+		<div class="sm-left">
+			<ul class="sm-pinned">
+				<li data-open="ie"><img src="xp/img/startmenu/ie.png" alt=""><span><b>Internet</b><small>Internet Explorer</small></span></li>
+				<li data-open="bsod"><img src="xp/img/startmenu/thunderbird.png" alt=""><span><b>E-mail</b><small>Mozilla Thunderbird</small></span></li>
+			</ul>
+			<ul class="sm-recent">
+				<li data-open="bio"><img src="xp/img/startmenu/mycomp.png" alt=""><span>About Me</span></li>
+				<li data-open="winamp"><img src="xp/img/startmenu/winamp.png" alt=""><span>Winamp</span></li>
+				<li data-open="mines"><img src="xp/img/startmenu/minesweeper.png" alt=""><span>Minesweeper</span></li>
+				<li data-open="tetris"><img src="xp/img/startmenu/tetris.png" alt=""><span>Tetris</span></li>
+				<li data-open="cmd"><img src="xp/img/startmenu/commandPrompt.png" alt=""><span>Command Prompt</span></li>
+				<li data-open="explorer:computer"><img src="xp/img/startmenu/totalcommander.png" alt=""><span>File Manager</span></li>
+			</ul>
+			<div class="sm-all">
+				<span class="sm-all-btn">All Programs <i></i></span>
+				<ul class="sm-sub">
+					<li data-open="winupdate"><img src="xp/img/windows_update.png" alt=""><span>Windows Update</span></li>
+					<li class="div"></li>
+					<li class="has-sub"><img src="xp/img/programs.png" alt=""><span>Accessories</span>
+						<ul class="sm-sub">
+							<li data-open="cmd"><img src="xp/img/startmenu/commandPrompt.png" alt=""><span>Command Prompt</span></li>
+							<li data-open="explorer:computer"><img src="xp/img/startmenu/totalcommander.png" alt=""><span>Windows Explorer</span></li>
+							<li data-open="run"><img src="xp/img/startmenu/run.png" alt=""><span>Run...</span></li>
+						</ul>
+					</li>
+					<li class="has-sub"><img src="xp/img/programs.png" alt=""><span>Games</span>
+						<ul class="sm-sub">
+							<li data-open="mines"><img src="xp/img/startmenu/minesweeper.png" alt=""><span>Minesweeper</span></li>
+							<li data-open="tetris"><img src="xp/img/startmenu/tetris.png" alt=""><span>Tetris</span></li>
+						</ul>
+					</li>
+					<li data-open="ie"><img src="xp/img/startmenu/ie16.png" alt=""><span>Internet Explorer</span></li>
+					<li data-open="bsod"><img src="xp/img/startmenu/oe16.png" alt=""><span>Outlook Express</span></li>
+					<li data-open="bsod"><img src="xp/img/startmenu/ra16.png" alt=""><span>Remote Assistance</span></li>
+					<li data-open="winamp"><img src="xp/img/startmenu/wmp16.png" alt=""><span>Winamp</span></li>
+					<li data-open="bsod"><img src="xp/img/startmenu/wm16.png" alt=""><span>Windows Messenger</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="sm-right">
+			<ul>
+				<li data-open="explorer:documents" class="bold"><img src="xp/img/startmenu/myrecent.png" alt=""><span>My Documents</span></li>
+				<li class="bold has-sub"><img src="xp/img/startmenu/myrecent.png" alt=""><span>My Recent Documents</span>
+					<ul class="sm-sub">
+						<li data-open="bio"><img src="xp/img/startmenu/textdoc.png" alt=""><span>about_me.txt</span></li>
+						<li data-open="ie"><img src="xp/img/startmenu/mywebsite.png" alt=""><span>Home Page</span></li>
+					</ul>
+				</li>
+				<li data-open="winamp" class="bold"><img src="xp/img/startmenu/mymusic.png" alt=""><span>My Music</span></li>
+				<li data-open="explorer:computer" class="bold"><img src="xp/img/startmenu/mycomp.png" alt=""><span>My Computer</span></li>
+				<li data-open="bsod" class="bold"><img src="xp/img/startmenu/mynetwork.png" alt=""><span>My Network Places</span></li>
+			</ul>
+			<ul>
+				<li data-open="controlpanel"><img src="xp/img/startmenu/controlpanel.png" alt=""><span>Control Panel</span></li>
+				<li data-open="printers"><img src="xp/img/startmenu/printers.png" alt=""><span>Printers and Faxes</span></li>
+			</ul>
+			<ul>
+				<li data-open="bio"><img src="xp/img/startmenu/helpsupport.png" alt=""><span>Help and Support</span></li>
+				<li data-open="ie"><img src="xp/img/startmenu/search.png" alt=""><span>Search</span></li>
+				<li data-open="run"><img src="xp/img/startmenu/run.png" alt=""><span>Run...</span></li>
+			</ul>
+		</div>
+		<div class="sm-foot">
+			<button type="button" id="logoffBtn"><i style="background-image:url(xp/img/logoff.png)"></i>Log Off</button>
+			<button type="button" id="shutdownBtn"><i style="background-image:url(xp/img/shutdown.png)"></i>Turn Off Computer</button>
+		</div>
+	</div>
+</div>
+
+<!-- Turn off dialog -->
+<div id="turnoff" class="hidden">
+	<div class="to-box">
+		<div class="to-head">Turn off computer <span class="flag"><i></i><i></i><i></i><i></i></span></div>
+		<div class="to-body">
+			<button type="button" data-to="standby"><i class="standby"></i>Stand By</button>
+			<button type="button" data-to="off"><i class="off"></i>Turn Off</button>
+			<button type="button" data-to="restart"><i class="restart"></i>Restart</button>
+		</div>
+		<div class="to-foot"><button type="button" class="xpbtn" data-to="cancel">Cancel</button></div>
+	</div>
+</div>
+
+<!-- Message screens -->
+<div id="saying" class="screen hidden">
+	<div class="lg-top"></div>
+	<div class="lg-mid"><p class="welcome-text" id="sayingText">logging off...</p></div>
+	<div class="lg-bottom"></div>
+</div>
+<div id="safeoff" class="hidden"><p>It's now safe to turn off<br>your computer.</p><small>Click anywhere to turn it back on</small></div>
+<div id="standby" class="hidden"></div>
+
+<!-- Blue screen -->
+<div id="bsod" class="hidden">
+<pre>
+A problem has been detected and Windows has been shut down to prevent damage
+to your computer.
+
+The problem seems to be caused by the following file: AVERY.SYS
+
+PAGE_FAULT_IN_NONPAGED_AREA
+
+If this is the first time you've seen this Stop error screen,
+restart your computer. If this screen appears again, follow
+these steps:
+
+Check to make sure any new hardware or software is properly installed.
+If this is a new installation, ask your hardware or software manufacturer
+for any Windows updates you might need.
+
+If problems continue, disable or remove any newly installed hardware
+or software. Disable BIOS memory options such as caching or shadowing.
+If you need to use Safe Mode to remove or disable components, restart
+your computer, press F8 to select Advanced Startup Options, and then
+select Safe Mode.
+
+Technical information:
+
+*** STOP: 0x00000050 (0xFD3094C2,0x00000001,0xFBFE7617,0x00000000)
+
+
+***  AVERY.SYS - Address FBFE7617 base at FBFE5000, DateStamp 3d6dd67c
+
+Beginning dump of physical memory
+Physical memory dump complete.
+Contact your system administrator or technical support group for further
+assistance.
+
+<span class="bsod-hint">Press any key or click to restart_</span>
+</pre>
+</div>
+
+<script src="xp/js/minesweeper.js"></script>
+<script src="xp/js/tetris.js"></script>
+<script src="xp/js/xp.js"></script>
+</body>
+</html>
