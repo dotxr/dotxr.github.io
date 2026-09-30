@@ -7,7 +7,7 @@
 
 	var TASKBAR_H = 34;
 	var LINKS = {
-		github: 'https://github.com/dotav',
+		github: 'https://github.com/dotxr',
 		discord: 'https://discord.gg/RyQWCxqrx6'
 	};
 
