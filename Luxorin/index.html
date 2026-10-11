@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luxorin Studios</title>
+  <meta name="description" content="Luxorin Studios makes VR games.">
+  <style>
+    :root { color-scheme: dark; --bg: #0b0d10; --fg: #eef1f5; --muted: #8a94a3; --line: #1f2530; --accent: #7aa2ff; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .mark { font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.9rem; }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+    nav a:hover { color: var(--fg); }
+    .hero { padding: 96px 0 72px; }
+    h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; margin: 0 0 20px; font-weight: 700; letter-spacing: -0.02em; }
+    .lede { font-size: 1.2rem; color: var(--muted); max-width: 620px; margin: 0 0 36px; }
+    .btn { display: inline-block; padding: 12px 22px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; border-radius: 4px; font-size: 0.95rem; }
+    .btn:hover { background: var(--accent); color: var(--bg); }
+    section { padding: 48px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 16px; font-weight: 600; }
+    p { margin: 0 0 14px; max-width: 640px; }
+    a.inline { color: var(--accent); }
+    footer { padding: 32px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 520px) { header { flex-direction: column; align-items: flex-start; gap: 12px; } nav a { margin: 0 16px 0 0; } .hero { padding: 64px 0 48px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="mark">Luxorin Studios</div>
+      <nav><a href="https://discord.gg/TkAbNAPYCF">Discord</a></nav>
+    </header>
+
+    <div class="hero">
+      <h1>We make VR games.</h1>
+      <p class="lede">Luxorin Studios is a small team building multiplayer virtual reality games with original code and art.</p>
+      <a class="btn" href="https://discord.gg/TkAbNAPYCF">Join the community</a>
+    </div>
+
+    <section>
+      <h2>About</h2>
+      <p>We build for headsets first. Our games are made to feel physical: hands that collide with the world, movement you control with your body, and matches that run on our own servers.</p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>For press, partnerships or questions, reach us on <a class="inline" href="https://discord.gg/TkAbNAPYCF">Discord</a>.</p>
+    </section>
+
+    <footer>
+      <span>&copy; Luxorin Studios</span>
+      <span>All assets and code are original.</span>
+    </footer>
+  </div>
+</body>
+</html>
